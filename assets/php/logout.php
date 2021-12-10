@@ -1,6 +1,6 @@
 <?php
     session_start();
     unset($_SESSION["login"]);
-    header("location: ./../index.php"); //redirigimos a index
+    header("location:login.html"); //redirigimos a index
 ?>
 
