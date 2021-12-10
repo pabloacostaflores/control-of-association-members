@@ -1,3 +1,4 @@
+<?php include("conexion.php"); ?>
 <!DOCTYPE html>
 <html>
 
@@ -28,8 +29,8 @@
                                         <h4 class="text-dark mb-4">Bienvenido</h4>
                                     </div>
                                     <form class="user">
-                                        <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Id Personal" name="IdPersona" minlength="7" maxlength="7" pattern="[0-9]+" required=""></div>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Contraseña" name="Password"></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Id Personal" name="IdPersona" minlength="7" maxlength="7" pattern="[0-9]+" required="" value= "<?php echo addclashes($_POST['usuario']); ?>"></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Contraseña" name="Password"  value= "<?php echo addclashes($_POST['contrasena']); ?>"></div>
                                         <div class="mb-3">
                                             <div class="custom-control custom-checkbox small"></div>
                                         </div><button class="btn btn-primary d-block btn-user w-100" type="submit">Ingresar</button>
