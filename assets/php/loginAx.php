@@ -1,13 +1,18 @@
 <?php 
-session_start();
-require_once(conexion.php);
-$query = "SELECT * FROM usuarios WHERE usuario = '".$_POST['usuario']."' AND password = '".$_POST['contrasena']."'";
-$resultado = mysqli_query($conexion, $query);
-$row = mysqli_fetch_array($resultado);
-if($row){
-    header("Location: ../index.php");
-}else
-{
-    $error = "Usuario o contraseña incorrectos";
+include("conexion.php");
+if(isset($_POST['Log'])){
+    $nombre = trim($_POST['IdPersona']);
+    $pass = trim($_POST['Password']);
+    $sql = "SELECT * FROM administrador WHERE idAdministrador = '1234567' and Contrasenia = 'contrasena";
+    //echo $sql;
+    $result = mysqli_query($conn, $sql);
+    echo $result;
+    if ($result) {
+            session_start();
+            header("location: ./../index.php");
+        }
+    else {
+        echo "<script>alert('Error en la consulta');</script>";    
+    }
 }
 ?>

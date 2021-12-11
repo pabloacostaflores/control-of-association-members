@@ -1,13 +1,14 @@
-<?php  
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db = "Amimitl";
-$link = mysqli_connect($host, $user, $pass, $db);
-if (!$link) {
-    echo "Error: Unable to connect to MySQL." . PHP_EOL;
-    echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
-    echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
-    exit;
+<?php
+$servername = "localhost";
+$database = "Amimitl";
+$username = "root";
+$password = "";
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $database);
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
+echo "Connected successfully";
+
 ?>
