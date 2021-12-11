@@ -132,74 +132,32 @@
                                 <form>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="username"><strong>Nombre Completo</strong></label><input class="form-control" type="text" id="username-1" name="nombre"></div>
+                                            <div class="mb-3"><label class="form-label" for="username"><strong>Objecto a prestar</strong><br></label>
+                                                <div class="dropdown"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Selecciona un objeto</button>
+                                                    <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="email"><strong>Telefono</strong><br></label><input class="form-control" type="tel" id="email-1" name="telefono"></div>
+                                            <div class="mb-3"><label class="form-label" for="email"><strong>Cantidad</strong><br></label><input class="form-control" type="number" id="email-1" name="cantidad" min="0"></div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="No. Contrato"><strong>No. Contrato</strong><br></label><input class="form-control" type="text" id="first_name-1" name="IdContrato"></div>
+                                            <div class="mb-3"><label class="form-label" for="No. Contrato"><strong>Id Prestatario</strong><br></label><input class="form-control" type="text" id="first_name-1" name="IdContrato"></div>
                                         </div>
                                         <div class="col">
                                             <div class="mb-3"></div>
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1" name="esSocio"><label class="form-check-label" for="formCheck-1">¿Es socio?</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-2" name="esHeredero"><label class="form-check-label" for="formCheck-2">¿Es heredero?<br></label></div>
                                         </div>
                                     </div>
                                     <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Añadir</button></div>
                                 </form>
                             </div>
                         </div>
-                        <div class="card shadow mb-3">
-                            <div class="card-header py-3">
-                                <p class="text-primary m-0 fw-bold">Actualizar Telefono</p>
-                            </div>
-                            <div class="card-body">
-                                <form>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="username"><strong>Id Persona</strong></label><input class="form-control" type="text" id="username-2" name="idPersona"></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="email"><strong>Nuevo Telefono</strong><br></label><input class="form-control" type="tel" id="email-2" name="nuevoTelefono"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Actualizar</button></div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card shadow mb-3">
-                        <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Nuevo Administrator o Tesorero</p>
-                        </div>
-                        <div class="card-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="username"><strong>Id de Persona</strong></label><input class="form-control" type="text" id="username-3" name="idPersona"></div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="mb-3"></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Contraseña</strong><br></label><input class="form-control" type="password" id="first_name-2" name="contra"></div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="last_name"><strong>Repite tu contraseña</strong><br></label><input class="form-control" type="text" id="last_name-2" name="repiteContra"></div>
-                                    </div>
-                                </div>
-                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save Settings</button></div>
-                            </form>
-                        </div>
                     </div>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Usuarios Registrados</p>
+                            <p class="text-primary m-0 fw-bold">Prestamos</p>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -219,12 +177,13 @@
                                 <table class="table my-0" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>Nombre</th>
-                                            <th>Posicion</th>
-                                            <th>Telefono</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Id Prestamo</th>
+                                            <th>Objecto</th>
+                                            <th>Registrado por</th>
+                                            <th>Prestado a</th>
+                                            <th>Cantidad</th>
+                                            <th>Fecha</th>
+                                            <th>Devuelto</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -310,14 +269,7 @@
                                         </tr>
                                     </tbody>
                                     <tfoot>
-                                        <tr>
-                                            <td><strong>Name</strong></td>
-                                            <td><strong>Position</strong></td>
-                                            <td><strong>Office</strong></td>
-                                            <td><strong>Age</strong></td>
-                                            <td><strong>Start date</strong></td>
-                                            <td><strong>Salary</strong></td>
-                                        </tr>
+                                        <tr></tr>
                                     </tfoot>
                                 </table>
                             </div>
