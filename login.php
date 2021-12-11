@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Login - Brand</title>
-    <link rel="stylesheet" href="./../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-    <link rel="stylesheet" href="./../fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="./../fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="./../fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
 </head>
 
 <body class="bg-gradient-primary">
@@ -21,7 +21,7 @@
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-flex">
-                                <div class="flex-grow-1 bg-login-image" style="background: url(&quot;./../img/amimitl.png&quot;) center / contain no-repeat;"></div>
+                                <div class="flex-grow-1 bg-login-image" style="background: url(&quot;assets/img/amimitl.png&quot;) center / contain no-repeat;"></div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5" style="text-align: center;">
