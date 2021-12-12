@@ -319,7 +319,16 @@
         async defer></script>
     <script> 
         var table = document.getElementById('dataTable');
-        
+        for(var i = 1; i < table.rows.length; i++) {
+            table.rows[i].insertCell(7);
+            for(var j = 0; j < table.rows[i].cells.length; j++) {
+                if(j == 4) {
+                    table.rows[i].cells[j].innerHTML = "<button>Ver</button>";
+                } else if(j == 7) {
+                    table.rows[i].cells[j].innerHTML = "<button style='background:red;'>X</button>";
+                }
+            }            
+        }
     </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/theme.js"></script>
