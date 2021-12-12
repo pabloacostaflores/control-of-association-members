@@ -305,7 +305,7 @@
                 var currCoord = new google.maps.Marker({
                     position: coords,
                     map: map,
-                    title: "Toma de don pedro",
+                    animation: google.maps.Animation.DROP,
                 });
                 pastCoord = currCoord;
             }
