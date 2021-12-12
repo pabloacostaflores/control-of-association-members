@@ -148,7 +148,7 @@
                                             $sql2 = "SELECT Descripcion FROM objeto WHERE idObjeto ='$id'";
                                             $result2 = mysqli_query($conn, $sql2);
                                             while($mostrar2 = mysqli_fetch_array($result2)){
-                                                $obj = $mostrar2['Objeto_idObjeto'];
+                                                $obj = $mostrar2['idObjeto'];
                                             }
                                             ?>
                                             <td><?php echo $mostrar['idPrestamos']?></td>
