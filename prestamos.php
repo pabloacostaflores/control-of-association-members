@@ -147,12 +147,13 @@
                                             $id = $mostrar['Objeto_idObjeto'];
                                             $sql2 = "SELECT Descripcion FROM objeto WHERE idObjeto ='$id'";
                                             $result2 = mysqli_query($conn, $sql2);
+                                            //Sacar el nombre del objeto
                                             while($mostrar2 = mysqli_fetch_array($result2)){
-                                                $obj = $mostrar2['idObjeto'];
+                                                $nombre = $mostrar2['Descripcion'];
                                             }
                                             ?>
                                             <td><?php echo $mostrar['idPrestamos']?></td>
-                                            <td><?php echo $obj?></td>
+                                            <td><?php echo $nombre?></td>
                                             <td><?php echo $mostrar['Administrador_idAdministrador']?></td>
                                             <td><?php echo $mostrar['Cantidad']?></td>
                                             <td><?php echo $mostrar['Fecha']?></td>
