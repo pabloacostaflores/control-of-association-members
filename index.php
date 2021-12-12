@@ -1,9 +1,6 @@
 <?php
     session_start();
-    $sesion = isset($_SESSION["login"]);
-    $conexion = mysqli_connect("localhost","root","","mydb");
-    mysqli_set_charset($conexion,"utf8");
-    $infUsuario;
+    $sesion = $_SESSION['idCargo'];
     ?>
 <!DOCTYPE html>
 <html>
@@ -30,7 +27,10 @@
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"></li>
                     <li class="nav-item"><a class="nav-link active" href="index.php"><i class="fa fa-group"></i><span>Usuarios</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="movimientosFinancieros.php"><i class="fas fa-table"></i><span>Movimientos Financieros</span></a><a class="nav-link" href="movimientosInventario.php"><i class="fa fa-dropbox"></i><span>Movimientos Inventario</span></a><a class="nav-link" href="tomas.php"><i class="fa fa-bitbucket"></i><span>Tomas</span></a><a class="nav-link" href="prestamos.php"><i class="fa fa-institution"></i><span>Prestamos</span></a><a class="nav-link" href="calendario.php"><i class="fa fa-calendar"></i><span>Calendario de Actividades</span></a></li>
+                    <?php if($sesion == 2){ ?>
+                        <li class="nav-item"><a class="nav-link" href="movimientosFinancieros.php"><i class="fas fa-table"></i><span>Movimientos Financieros</span></a></li>
+                    <?php } ?>
+                    <li><a class="nav-link" href="movimientosInventario.php"><i class="fa fa-dropbox"></i><span>Movimientos Inventario</span></a><a class="nav-link" href="tomas.php"><i class="fa fa-bitbucket"></i><span>Tomas</span></a><a class="nav-link" href="prestamos.php"><i class="fa fa-institution"></i><span>Prestamos</span></a><a class="nav-link" href="calendario.php"><i class="fa fa-calendar"></i><span>Calendario de Actividades</span></a></li>
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
                 </ul>
@@ -67,7 +67,7 @@
                                 <p class="text-primary m-0 fw-bold">Nuevo Cliente</p>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form method = "post">
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3"><label class="form-label" for="username"><strong>Nombre Completo</strong></label><input class="form-control" type="text" id="username-1" name="nombre" required=""></div>
@@ -91,8 +91,11 @@
                                             <div class="mb-3"><label class="form-label" for="No. Contrato"><strong>Direccion:</strong><br></label><iframe allowfullscreen="" frameborder="0" loading="lazy" src="https://www.google.com/maps/embed/v1/search?key=AIzaSyCp0oPxwXimtvim2A34gQu5pqMcYH5WXSs&amp;q=Huixquilucan&amp;zoom=15" width="100%" height="500"></iframe></div>
                                         </div>
                                     </div>
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Añadir</button></div>
+                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" name ="aniadir">Añadir</button></div>
                                 </form>
+                                <?php 
+                                include("ingresopersonas.php");
+                            ?>
                             </div>
                         </div>
                         <div class="card shadow mb-3">
@@ -100,7 +103,7 @@
                                 <p class="text-primary m-0 fw-bold">Actualizar Telefono</p>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form method="post">
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3"><label class="form-label" for="username"><strong>Id Persona</strong></label><input class="form-control" type="text" id="username-2" name="idPersona" pattern="[0-9]+" required=""></div>
@@ -109,8 +112,11 @@
                                             <div class="mb-3"><label class="form-label" for="email"><strong>Nuevo Telefono</strong><br></label><input class="form-control" type="tel" id="email-2" name="nuevoTelefono" required=""></div>
                                         </div>
                                     </div>
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Actualizar</button></div>
+                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" name="act">Actualizar</button></div>
                                 </form>
+                                <?php 
+                                include("telefono.php");
+                            ?>
                             </div>
                         </div>
                     </div>
@@ -119,15 +125,26 @@
                             <p class="text-primary m-0 fw-bold">Nuevo Administrator o Tesorero</p>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form method="post">
                                 <div class="row">
                                     <div class="col">
                                         <div class="mb-3"><label class="form-label" for="username"><strong>Id de Persona</strong></label><input class="form-control" type="text" id="username-3" name="idPersonaNuevo" pattern="[0-9]+" required=""></div>
                                     </div>
                                     <div class="col"><label class="form-label" for="username"><strong>Cargo</strong></label>
-                                        <div class="dropdown"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Selecciona un cargo</button>
-                                            <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
-                                        </div>
+                                    <label><select name="cargos" class= "form-label">
+                                                <?php
+                                                include("assets/php/conexion.php");
+                                                $sql = "SELECT * FROM cargo order by idCargo";
+                                                $result = mysqli_query($conn, $sql);
+                                                while($row = mysqli_fetch_array($result)){
+                                                    $id = $row['idCargo'];
+                                                    $nombre = $row['NombreCargo'];
+                                                ?> 
+                                                <option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select></label>
                                         <div class="mb-3"></div>
                                     </div>
                                 </div>
@@ -139,8 +156,11 @@
                                         <div class="mb-3"><label class="form-label" for="last_name"><strong>Repite tu contraseña</strong><br></label><input class="form-control" type="password" id="last_name-2" name="repiteContra" required="" pattern="[0-9]+" minlength="8"></div>
                                     </div>
                                 </div>
-                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Añadir</button></div>
+                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" name="add" >Añadir</button></div>
                             </form>
+                            <?php 
+                                include("admin.php");
+                            ?>
                         </div>
                     </div>
                     <div class="card shadow">
@@ -176,76 +196,42 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php
+                                        include("assets/php/conexion.php");
+                                        $sql = "SELECT * FROM persona";
+                                        $result = mysqli_query($conn, $sql);
+                                        while($mostrar = mysqli_fetch_array($result)){
+                                        ?>
                                         <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
+                                            <?php
+                                            $id = $mostrar['idPersona'];
+                                            $sql2 = "SELECT * FROM cargo WHERE idCargo = (SELECT Cargo_idCargo FROM administrador WHERE Persona_idPersona = '$id')";
+                                            $result2 = mysqli_query($conn, $sql2);
+                                            while($mostrar2 = mysqli_fetch_array($result2)){
+                                                $cargo = $mostrar2['NombreCargo'];
+                                            }
+                                            ?>
+                                            <?php if($mostrar['EsSocio'] == 1){
+                                                $socio = "Si";
+                                            }else{
+                                                $socio = "No";
+                                            } ?>
+                                            <?php if($mostrar['EsHeredero'] == 1){
+                                                $here = "Si";
+                                            }else{
+                                                $here = "No";
+                                            } ?>
+                                            <td><?php echo $mostrar['idPersona']?></td>
+                                            <td><?php echo $mostrar['Nombre']?></td>
+                                            <td><?php echo $cargo?></td>
+                                            <td><?php echo $mostrar['Telefono']?></td>
+                                            <td><?php echo $mostrar['Dirreccion']?></td>
+                                            <td><?php echo $socio?></td>
+                                            <td><?php echo $here?></td>
                                         </tr>
-                                        <tr>
-                                            <td>Angelica Ramos</td>
-                                            <td>Chief Executive Officer(CEO)</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                            <td>2009/10/09<br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12<br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bradley Greer</td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>41</td>
-                                            <td>2012/10/13<br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brenden Wagner</td>
-                                            <td>Software Engineer</td>
-                                            <td>San Francisco</td>
-                                            <td>28</td>
-                                            <td>2011/06/07<br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brielle Williamson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>New York</td>
-                                            <td>61</td>
-                                            <td>2012/12/02<br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bruno Nash<br></td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>38</td>
-                                            <td>2011/05/03<br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Caesar Vance</td>
-                                            <td>Pre-Sales Support</td>
-                                            <td>New York</td>
-                                            <td>21</td>
-                                            <td>2011/12/12<br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cara Stevens</td>
-                                            <td>Sales Assistant</td>
-                                            <td>New York</td>
-                                            <td>46</td>
-                                            <td>2011/12/06<br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior JavaScript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29<br></td>
-                                        </tr>
+                                        <?php
+                                        }
+                                        ?>
                                     </tbody>
                                     <tfoot>
                                         <tr></tr>
