@@ -72,7 +72,8 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3"><label class="form-label" for="username"><strong>Objecto a prestar</strong><br></label>
-                                            <label><select name="obj" class= "form-label">
+                                            <br>
+                                            <label><select name="obj" class= "dropdown-item">
                                                 <?php
                                                 include("assets/php/conexion.php");
                                                 $sql = "SELECT * FROM objeto";

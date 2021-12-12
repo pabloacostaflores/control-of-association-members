@@ -148,7 +148,7 @@
                                     </div>
                                     <div class="col"><label class="form-label" for="username"><strong>Cargo</strong></label>
                                     <br>
-                                    <label><select name="cargos" class= "form-label">
+                                    <label><select name="cargos" class= "dropdown-item">
                                                 <?php
                                                 include("assets/php/conexion.php");
                                                 $sql = "SELECT * FROM cargo order by idCargo";
@@ -162,6 +162,7 @@
                                                 }
                                                 ?>
                                             </select></label>
+                                
                                         <div class="mb-3"></div>
                                     </div>
                                 </div>
