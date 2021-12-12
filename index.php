@@ -131,6 +131,7 @@
                                         <div class="mb-3"><label class="form-label" for="username"><strong>Id de Persona</strong></label><input class="form-control" type="text" id="username-3" name="idPersonaNuevo" pattern="[0-9]+" required=""></div>
                                     </div>
                                     <div class="col"><label class="form-label" for="username"><strong>Cargo</strong></label>
+                                    <br>
                                     <label><select name="cargos" class= "form-label">
                                                 <?php
                                                 include("assets/php/conexion.php");
