@@ -86,9 +86,21 @@
                                             <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-2" name="esHeredero"><label class="form-check-label" for="formCheck-2">¿Es heredero?<br></label></div>
                                         </div>
                                     </div>
+                                    <div class="row" style = "display:none;">
+                                        <div class="col">
+                                            <div class="mb-3"><label class="form-label" for="No. Contrato"><strong>coordenada x</strong><br></label><input class="form-control" type="text" id="coorx" name="coorx" required=""></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-3"><label class="form-label" for="No. Contrato"><strong>coordenadas y</strong><br></label><input class="form-control" type="text" id="coory" name="coory" required=""></div>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="No. Contrato"><strong>Direccion:</strong><br></label><iframe allowfullscreen="" frameborder="0" loading="lazy" src="https://www.google.com/maps/embed/v1/search?key=AIzaSyCp0oPxwXimtvim2A34gQu5pqMcYH5WXSs&amp;q=Huixquilucan&amp;zoom=15" width="100%" height="500"></iframe></div>
+                                            <div class="mb-3"><label class="form-label" for="No. Contrato"><strong>Direccion:</strong><br></label>
+
+                                            <div id="map" style="height: 500px; "></div>
+                                            
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" name ="aniadir">Añadir</button></div>
@@ -266,6 +278,41 @@
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
+    <script>
+        var map, pastCoord = 1, currCoord;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 19.3437198, lng: -99.3629543 },
+                zoom: 17
+            });
+            // This event listener calls addMarker() when the map is clicked.
+            google.maps.event.addListener(map, "click", (event) => {
+                document.getElementById("coorx").value = event.latLng.lat();
+                document.getElementById("coory").value = event.latLng.lng();
+                addMarker(event.latLng);
+            });
+            var marker = new google.maps.Marker({
+                position: { lat: 19.3437198, lng: -99.3629543 },
+                map: map,
+                icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                title: "ORGANIZACION",
+            });
+            //add marker function
+            function addMarker(coords) {
+                if(pastCoord != 1){
+                    pastCoord.setMap(null);
+                }
+                var currCoord = new google.maps.Marker({
+                    position: coords,
+                    map: map,
+                    title: "Toma de don pedro",
+                });
+                pastCoord = currCoord;
+            }
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp0oPxwXimtvim2A34gQu5pqMcYH5WXSs&callback=initMap"
+        async defer></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/theme.js"></script>
 </body>
