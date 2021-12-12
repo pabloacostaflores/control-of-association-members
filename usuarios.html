@@ -21,7 +21,7 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"></li>
                     <li class="nav-item"><a class="nav-link active" href="usuarios.html"><i class="fa fa-group"></i><span>Usuarios</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="movimientosFinancieros.html"><i class="fas fa-table"></i><span>Movimientos Financieros</span></a><a class="nav-link" href="movimientosInventario.html"><i class="fa fa-dropbox"></i><span>Movimientos Inventario</span></a><a class="nav-link" href="tomas.html"><i class="fa fa-bitbucket"></i><span>Tomas</span></a><a class="nav-link" href="prestamos.html"><i class="fa fa-institution"></i><span>Prestamos</span></a><a class="nav-link" href="calendario.html"><i class="fa fa-calendar"></i><span>Calendario de Actividades</span></a></li>
                     <li class="nav-item"></li>
@@ -132,15 +132,15 @@
                                 <form>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="username"><strong>Nombre Completo</strong></label><input class="form-control" type="text" id="username-1" name="nombre"></div>
+                                            <div class="mb-3"><label class="form-label" for="username"><strong>Nombre Completo</strong></label><input class="form-control" type="text" id="username-1" name="nombre" required=""></div>
                                         </div>
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="email"><strong>Telefono</strong><br></label><input class="form-control" type="tel" id="email-1" name="telefono"></div>
+                                            <div class="mb-3"><label class="form-label" for="email"><strong>Telefono</strong><br></label><input class="form-control" type="tel" id="email-1" name="telefono" required=""></div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="No. Contrato"><strong>No. Contrato</strong><br></label><input class="form-control" type="text" id="first_name-1" name="IdContrato"></div>
+                                            <div class="mb-3"><label class="form-label" for="No. Contrato"><strong>No. Contrato</strong><br></label><input class="form-control" type="text" id="first_name-1" name="IdContrato" pattern="[0-9]+" required=""></div>
                                         </div>
                                         <div class="col">
                                             <div class="mb-3"></div>
@@ -165,10 +165,10 @@
                                 <form>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="username"><strong>Id Persona</strong></label><input class="form-control" type="text" id="username-2" name="idPersona"></div>
+                                            <div class="mb-3"><label class="form-label" for="username"><strong>Id Persona</strong></label><input class="form-control" type="text" id="username-2" name="idPersona" pattern="[0-9]+" required=""></div>
                                         </div>
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="email"><strong>Nuevo Telefono</strong><br></label><input class="form-control" type="tel" id="email-2" name="nuevoTelefono"></div>
+                                            <div class="mb-3"><label class="form-label" for="email"><strong>Nuevo Telefono</strong><br></label><input class="form-control" type="tel" id="email-2" name="nuevoTelefono" required=""></div>
                                         </div>
                                     </div>
                                     <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Actualizar</button></div>
@@ -184,7 +184,7 @@
                             <form>
                                 <div class="row">
                                     <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="username"><strong>Id de Persona</strong></label><input class="form-control" type="text" id="username-3" name="idPersona"></div>
+                                        <div class="mb-3"><label class="form-label" for="username"><strong>Id de Persona</strong></label><input class="form-control" type="text" id="username-3" name="idPersonaNuevo" pattern="[0-9]+" required=""></div>
                                     </div>
                                     <div class="col"><label class="form-label" for="username"><strong>Cargo</strong></label>
                                         <div class="dropdown"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Selecciona un cargo</button>
@@ -195,10 +195,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Contraseña</strong><br></label><input class="form-control" type="password" id="first_name-2" name="contra"></div>
+                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Contraseña</strong><br></label><input class="form-control" type="password" id="first_name-2" name="contra" required="" pattern="[0-9]+" minlength="8"></div>
                                     </div>
                                     <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="last_name"><strong>Repite tu contraseña</strong><br></label><input class="form-control" type="text" id="last_name-2" name="repiteContra"></div>
+                                        <div class="mb-3"><label class="form-label" for="last_name"><strong>Repite tu contraseña</strong><br></label><input class="form-control" type="password" id="last_name-2" name="repiteContra" required="" pattern="[0-9]+" minlength="8"></div>
                                     </div>
                                 </div>
                                 <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Añadir</button></div>
@@ -212,7 +212,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length-1" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
+                                    <div id="dataTable_length-1" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Mostrar<select class="d-inline-block form-select form-select-sm">
                                                 <option value="10" selected="">10</option>
                                                 <option value="25">25</option>
                                                 <option value="50">50</option>
@@ -220,7 +220,7 @@
                                             </select>&nbsp;</label></div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="text-md-end dataTables_filter" id="dataTable_filter-1"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                                    <div class="text-md-end dataTables_filter" id="dataTable_filter-1"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Buscar"></label></div>
                                 </div>
                             </div>
                             <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
@@ -316,7 +316,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 align-self-center">
-                                    <p id="dataTable_info-1" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                                    <p id="dataTable_info-1" class="dataTables_info" role="status" aria-live="polite">Mostrando 1 al 10 de 27</p>
                                 </div>
                                 <div class="col-md-6">
                                     <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
@@ -342,7 +342,6 @@
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/theme.js"></script>
 </body>
 

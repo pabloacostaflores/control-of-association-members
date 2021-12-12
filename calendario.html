@@ -21,7 +21,7 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"></li>
                     <li class="nav-item"><a class="nav-link" href="usuarios.html"><i class="fa fa-group"></i><span>Usuarios</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="movimientosFinancieros.html"><i class="fas fa-table"></i><span>Movimientos Financieros</span></a><a class="nav-link" href="movimientosInventario.html"><i class="fa fa-dropbox"></i><span>Movimientos Inventario</span></a><a class="nav-link" href="tomas.html"><i class="fa fa-bitbucket"></i><span>Tomas</span></a><a class="nav-link" href="prestamos.html"><i class="fa fa-institution"></i><span>Prestamos</span></a><a class="nav-link active" href="calendario.html"><i class="fa fa-calendar"></i><span>Calendario de Actividades</span></a></li>
                     <li class="nav-item"></li>
@@ -122,109 +122,49 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Usuarios</h3>
-                    <div id="content-3">
-                        <div class="card shadow mb-3">
-                            <div class="card-header py-3">
-                                <p class="text-primary m-0 fw-bold">Nuevo Cliente</p>
-                            </div>
-                            <div class="card-body">
-                                <form>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="username"><strong>Nombre Completo</strong></label><input class="form-control" type="text" id="username-1" name="nombre"></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="email"><strong>Telefono</strong><br></label><input class="form-control" type="tel" id="email-1" name="telefono"></div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="No. Contrato"><strong>No. Contrato</strong><br></label><input class="form-control" type="text" id="first_name-1" name="IdContrato"></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3"></div>
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1" name="esSocio"><label class="form-check-label" for="formCheck-1">¿Es socio?</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-2" name="esHeredero"><label class="form-check-label" for="formCheck-2">¿Es heredero?<br></label></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Añadir</button></div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="card shadow mb-3">
-                            <div class="card-header py-3">
-                                <p class="text-primary m-0 fw-bold">Actualizar Telefono</p>
-                            </div>
-                            <div class="card-body">
-                                <form>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="username"><strong>Id Persona</strong></label><input class="form-control" type="text" id="username-2" name="idPersona"></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="email"><strong>Nuevo Telefono</strong><br></label><input class="form-control" type="tel" id="email-2" name="nuevoTelefono"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Actualizar</button></div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card shadow mb-3">
-                        <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Nuevo Administrator o Tesorero</p>
-                        </div>
-                        <div class="card-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="username"><strong>Id de Persona</strong></label><input class="form-control" type="text" id="username-3" name="idPersona"></div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="mb-3"></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Contraseña</strong><br></label><input class="form-control" type="password" id="first_name-2" name="contra"></div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="last_name"><strong>Repite tu contraseña</strong><br></label><input class="form-control" type="text" id="last_name-2" name="repiteContra"></div>
-                                    </div>
-                                </div>
-                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save Settings</button></div>
-                            </form>
-                        </div>
-                    </div>
+                    <h3 class="text-dark mb-4">Calendario</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Usuarios Registrados</p>
+                            <p class="text-primary m-0 fw-bold">Faenas</p>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length-1" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
+                                    <div id="dataTable_length-1" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Mostrando<select class="d-inline-block form-select form-select-sm">
                                                 <option value="10" selected="">10</option>
                                                 <option value="25">25</option>
                                                 <option value="50">50</option>
                                                 <option value="100">100</option>
+                                            </select>&nbsp;</label><label class="form-label" style="margin: 0px 0px 0px 100px;">Mes<select class="d-inline-block form-select form-select-sm" style="margin: 0px 0px 0px 30px;">
+                                                <option value="1">Enero</option>
+                                                <option value="2">Febrero</option>
+                                                <option value="3">Marzo</option>
+                                                <option value="4">Abril</option>
+                                                <option value="5">Mayo</option>
+                                                <option value="6">Junio</option>
+                                                <option value="7">Julio</option>
+                                                <option value="8">Agosto</option>
+                                                <option value="9">Septiembre</option>
+                                                <option value="10">Octubre</option>
+                                                <option value="11">Noviembre</option>
+                                                <option value="12">Diciembre</option>
+                                                <option value="13" selected="">Todos</option>
                                             </select>&nbsp;</label></div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="text-md-end dataTables_filter" id="dataTable_filter-1"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                                    <div class="text-md-end dataTables_filter" id="dataTable_filter-1"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Buscar"></label></div>
                                 </div>
                             </div>
                             <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
                                 <table class="table my-0" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>Nombre</th>
-                                            <th>Posicion</th>
-                                            <th>Telefono</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Id Actividad</th>
+                                            <th>Fecha y Hora</th>
+                                            <th>Persona</th>
+                                            <th>Costo</th>
+                                            <th>Reg Pago</th>
+                                            <th>Reg Asistencia</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -310,20 +250,13 @@
                                         </tr>
                                     </tbody>
                                     <tfoot>
-                                        <tr>
-                                            <td><strong>Name</strong></td>
-                                            <td><strong>Position</strong></td>
-                                            <td><strong>Office</strong></td>
-                                            <td><strong>Age</strong></td>
-                                            <td><strong>Start date</strong></td>
-                                            <td><strong>Salary</strong></td>
-                                        </tr>
+                                        <tr></tr>
                                     </tfoot>
                                 </table>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 align-self-center">
-                                    <p id="dataTable_info-1" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                                    <p id="dataTable_info-1" class="dataTables_info" role="status" aria-live="polite">Mostrando 1 al 10 de 27</p>
                                 </div>
                                 <div class="col-md-6">
                                     <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
@@ -349,7 +282,6 @@
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/theme.js"></script>
 </body>
 

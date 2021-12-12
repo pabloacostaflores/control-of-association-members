@@ -21,7 +21,7 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"></li>
                     <li class="nav-item"><a class="nav-link" href="usuarios.html"><i class="fa fa-group"></i><span>Usuarios</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="movimientosFinancieros.html"><i class="fas fa-table"></i><span>Movimientos Financieros</span></a><a class="nav-link" href="movimientosInventario.html"><i class="fa fa-dropbox"></i><span>Movimientos Inventario</span></a><a class="nav-link active" href="tomas.html"><i class="fa fa-bitbucket"></i><span>Tomas</span></a><a class="nav-link" href="prestamos.html"><i class="fa fa-institution"></i><span>Prestamos</span></a><a class="nav-link" href="calendario.html"><i class="fa fa-calendar"></i><span>Calendario de Actividades</span></a></li>
                     <li class="nav-item"></li>
@@ -147,11 +147,11 @@
                                 <form>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="username"><strong>Fecha del reporte</strong></label><input class="form-control" type="date" name="fecha"></div>
-                                            <div class="mb-3"><label class="form-label" for="username"><strong>Acusado</strong><br></label><input class="form-control" type="text" id="email-3" name="idAcusado" placeholder="Id de la persona que cometio la falta"></div>
+                                            <div class="mb-3"><label class="form-label" for="username"><strong>Fecha del reporte</strong></label><input class="form-control" type="date" name="fecha" required=""></div>
+                                            <div class="mb-3"><label class="form-label" for="username"><strong>Acusado</strong><br></label><input class="form-control" type="text" id="email-3" name="idAcusado" placeholder="Id de la persona que cometio la falta" required="" pattern="[0-9]+"></div>
                                         </div>
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="email"><strong>Descripcion</strong><br></label><input class="form-control" type="text" id="email-6" name="descripcion" placeholder="Razon del reporte"></div>
+                                            <div class="mb-3"><label class="form-label" for="email"><strong>Descripcion</strong><br></label><input class="form-control" type="text" id="email-6" name="descripcion" placeholder="Razon del reporte" required=""></div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -171,11 +171,11 @@
                                 <form>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="username"><strong>Fecha del reporte</strong></label><input class="form-control" type="date" name="fechaRep"></div>
-                                            <div class="mb-3"><label class="form-label" for="username"><strong>Id de Contrato</strong><br></label><input class="form-control" type="text" id="email-4" name="idContrato" placeholder="Id Contrato donde se llevo a cabo reparacion"></div>
+                                            <div class="mb-3"><label class="form-label" for="username"><strong>Fecha del reporte</strong></label><input class="form-control" type="date" name="fechaRep" required=""></div>
+                                            <div class="mb-3"><label class="form-label" for="username"><strong>Id de Contrato</strong><br></label><input class="form-control" type="text" id="email-4" name="idContrato" placeholder="Id Contrato donde se llevo a cabo reparacion" required="" pattern="[0-9]+"></div>
                                         </div>
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="email"><strong>Descripcion</strong><br></label><input class="form-control" type="text" id="email-5" name="descripcionRep" placeholder="Detalles de la reparacion"></div>
+                                            <div class="mb-3"><label class="form-label" for="email"><strong>Descripcion</strong><br></label><input class="form-control" type="text" id="email-5" name="descripcionRep" placeholder="Detalles de la reparacion" required=""></div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -195,7 +195,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
+                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Mostrando<select class="d-inline-block form-select form-select-sm">
                                                 <option value="10" selected="">10</option>
                                                 <option value="25">25</option>
                                                 <option value="50">50</option>
@@ -203,7 +203,7 @@
                                             </select>&nbsp;</label></div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                                    <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Buscar"></label></div>
                                 </div>
                             </div>
                             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
@@ -285,7 +285,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 align-self-center">
-                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Mostrando 1 al 10 de 27</p>
                                 </div>
                                 <div class="col-md-6">
                                     <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
@@ -308,7 +308,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length-1" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
+                                    <div id="dataTable_length-1" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Mostrando<select class="d-inline-block form-select form-select-sm">
                                                 <option value="10" selected="">10</option>
                                                 <option value="25">25</option>
                                                 <option value="50">50</option>
@@ -316,7 +316,7 @@
                                             </select>&nbsp;</label></div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="text-md-end dataTables_filter" id="dataTable_filter-1"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                                    <div class="text-md-end dataTables_filter" id="dataTable_filter-1"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Buscar"></label></div>
                                 </div>
                             </div>
                             <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
@@ -398,7 +398,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 align-self-center">
-                                    <p id="dataTable_info-1" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                                    <p id="dataTable_info-1" class="dataTables_info" role="status" aria-live="polite">Mostrando 1 al 10 de 27</p>
                                 </div>
                                 <div class="col-md-6">
                                     <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
@@ -424,7 +424,6 @@
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/theme.js"></script>
 </body>
 
