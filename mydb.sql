@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-12-2021 a las 07:12:02
+-- Tiempo de generación: 12-12-2021 a las 22:30:29
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.7
 
@@ -11,8 +11,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -151,8 +149,9 @@ CREATE TABLE `operacioninventario` (
 CREATE TABLE `persona` (
   `idPersona` int(11) NOT NULL,
   `Nombre` varchar(60) NOT NULL,
+  `coordX` double DEFAULT NULL,
+  `coordY` double DEFAULT NULL,
   `Telefono` varchar(10) NOT NULL,
-  `Dirreccion` varchar(200) NOT NULL,
   `EsSocio` tinyint(4) NOT NULL,
   `EsHeredero` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -161,13 +160,14 @@ CREATE TABLE `persona` (
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`idPersona`, `Nombre`, `Telefono`, `Dirreccion`, `EsSocio`, `EsHeredero`) VALUES
-(1, 'Juan', '999999', 'sopita', 1, 0),
-(4, 'Mau', '1234567891', '4', 0, 0),
-(7, 'JJ', '55578', '7', 1, 0),
-(8, 'Angel Uriel', '55555', '8', 0, 0),
-(9, 'Pablo', '455', '9', 1, 1),
-(555, 'Peca Peca', '5576814', '555', 1, 1);
+INSERT INTO `persona` (`idPersona`, `Nombre`, `coordX`, `coordY`, `Telefono`, `EsSocio`, `EsHeredero`) VALUES
+(1, 'Juan', NULL, NULL, '999999', 1, 0),
+(4, 'Mau', NULL, NULL, '1234567891', 0, 0),
+(7, 'JJ', NULL, NULL, '55578', 1, 0),
+(8, 'Angel Uriel', NULL, NULL, '55555', 0, 0),
+(9, 'Pablo', NULL, NULL, '455', 1, 1),
+(10, 'Poncho', 19.343892902279116, -99.36263405253827, '557815', 1, 1),
+(555, 'Peca Peca', NULL, NULL, '5576814', 1, 1);
 
 -- --------------------------------------------------------
 
