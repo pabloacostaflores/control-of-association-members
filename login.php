@@ -27,13 +27,17 @@
                                     <div class="text-center">
                                         <h4 class="text-dark mb-4">Bienvenido</h4>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" method = "post">
                                         <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Id Personal" name="IdPersona" pattern="[0-9]+" required=""></div>
                                         <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Contraseña" name="Password" minlength="8" required=""></div>
                                         <div class="mb-3">
                                             <div class="custom-control custom-checkbox small"></div>
-                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit">Ingresar</button>
+                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit" name ="Logi">Ingresar</button>
+                                        
                                     </form>
+                                    <?php
+                                        include("loginAx.php");
+                                        ?>
                                     <div class="text-center"></div>
                                     <div class="text-center"></div>
                                 </div>

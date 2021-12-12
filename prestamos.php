@@ -22,8 +22,8 @@
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fa fa-group"></i><span>Usuarios</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="movimientosFinancieros.html"><i class="fas fa-table"></i><span>Movimientos Financieros</span></a><a class="nav-link" href="movimientosInventario.html"><i class="fa fa-dropbox"></i><span>Movimientos Inventario</span></a><a class="nav-link" href="tomas.html"><i class="fa fa-bitbucket"></i><span>Tomas</span></a><a class="nav-link active" href="prestamos.html"><i class="fa fa-institution"></i><span>Prestamos</span></a><a class="nav-link" href="calendario.html"><i class="fa fa-calendar"></i><span>Calendario de Actividades</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php"><i class="fa fa-group"></i><span>Usuarios</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="movimientosFinancieros.php"><i class="fas fa-table"></i><span>Movimientos Financieros</span></a><a class="nav-link" href="movimientosInventario.php"><i class="fa fa-dropbox"></i><span>Movimientos Inventario</span></a><a class="nav-link" href="tomas.php"><i class="fa fa-bitbucket"></i><span>Tomas</span></a><a class="nav-link active" href="prestamos.php"><i class="fa fa-institution"></i><span>Prestamos</span></a><a class="nav-link" href="calendario.php"><i class="fa fa-calendar"></i><span>Calendario de Actividades</span></a></li>
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
                 </ul>
