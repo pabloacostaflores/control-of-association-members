@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    $sesion = $_SESSION['idCargo'];
+
+    if(!isset($sesion)){
+        header("location: login.php");
+    }
+?>
 <!DOCTYPE html>
 <html>
 

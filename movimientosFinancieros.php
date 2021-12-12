@@ -1,6 +1,9 @@
 <?php
     session_start();
     $sesion =$_SESSION['idPersona'];
+    if(!isset($sesion)){
+        header("location: login.php");
+    }
     ?>
 <!DOCTYPE html>
 <html>
