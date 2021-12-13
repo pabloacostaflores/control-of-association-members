@@ -150,86 +150,39 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php
+                                        include("assets/php/conexion.php");
+                                        $sql = "SELECT * FROM operacioninventario";
+                                        $result = mysqli_query($conn, $sql);
+                                        while($row = mysqli_fetch_array($result)){
+                                            ?>
                                         <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
+                                            <?php
+                                            $id = $row['Objeto_idObjeto'];
+                                            $sql2 = "SELECT Descripcion FROM objeto WHERE idObjeto = '$id'";
+                                            $result2 = mysqli_query($conn, $sql2);
+                                            while($row2 = mysqli_fetch_array($result2)){
+                                                $nombre = $row2['Descripcion'];
+                                            }
+                                            ?>
+                                            <?php
+                                                $id = $row['Administrador_idAdministrador'];
+                                                $sql2 = "SELECT Nombre FROM persona WHERE idPersona = (SELECT Persona_idPersona FROM administrador WHERE idAdministrador = '$id')";
+                                                $result2 = mysqli_query($conn, $sql2);
+                                                while($mostrar2 = mysqli_fetch_array($result2)){
+                                                    $nombre2= $mostrar2['Nombre'];
+                                                }
+                                            ?>
+                                            <td><?php echo $row['idOperacionInventario']; ?></td>
+                                            <td><?php echo $nombre; ?></td>
+                                            <td><?php echo $nombre2; ?></td>
+                                            <td><?php echo $row['Cantidad']; ?></td>
+                                            <td><?php echo $row['Valor']; ?></td>
+                                            <td><?php echo $row['FechaOperacion']; ?></td>
                                         </tr>
-                                        <tr>
-                                            <td>Angelica Ramos</td>
-                                            <td>Chief Executive Officer(CEO)</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                            <td>2009/10/09<br></td>
-                                            <td>$1,200,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12<br></td>
-                                            <td>$86,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bradley Greer</td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>41</td>
-                                            <td>2012/10/13<br></td>
-                                            <td>$132,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brenden Wagner</td>
-                                            <td>Software Engineer</td>
-                                            <td>San Francisco</td>
-                                            <td>28</td>
-                                            <td>2011/06/07<br></td>
-                                            <td>$206,850</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brielle Williamson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>New York</td>
-                                            <td>61</td>
-                                            <td>2012/12/02<br></td>
-                                            <td>$372,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bruno Nash<br></td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>38</td>
-                                            <td>2011/05/03<br></td>
-                                            <td>$163,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Caesar Vance</td>
-                                            <td>Pre-Sales Support</td>
-                                            <td>New York</td>
-                                            <td>21</td>
-                                            <td>2011/12/12<br></td>
-                                            <td>$106,450</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cara Stevens</td>
-                                            <td>Sales Assistant</td>
-                                            <td>New York</td>
-                                            <td>46</td>
-                                            <td>2011/12/06<br></td>
-                                            <td>$145,600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior JavaScript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29<br></td>
-                                            <td>$433,060</td>
-                                        </tr>
+                                        <?php
+                                        }
+                                        ?>
                                     </tbody>
                                     <tfoot>
                                         <tr></tr>
