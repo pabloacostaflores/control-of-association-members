@@ -299,6 +299,22 @@
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
+    <script>
+        <?php
+        //tomar todas las coordenadas x y y de la persona
+        $sql = "SELECT idPersona,coordX,coordY FROM persona";
+        $result = mysqli_query($conn, $sql);
+        $arre[] = array();
+        while($mostrar = mysqli_fetch_array($result)){
+            $arre[] = array($mostrar['idPersona'],$mostrar['coordX'],$mostrar['coordY']);
+            ?>
+        <?php
+        }
+        $jsonString = json_encode($arre);
+        ?>
+        var arreglo = <?php echo $jsonString; ?>;
+        console.log(arreglo);
+    </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/theme.js"></script>
 </body>

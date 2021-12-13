@@ -7,6 +7,8 @@ if(isset($_POST['aniadir'])){
     $contrato = $_POST['IdContrato'];
     $coordX = $_POST['coorx'];
     $coordY = $_POST['coory'];
+    $socio = 0;
+    $heredero = 0;
     if(isset($_POST['esSocio'])){
         $socio = 1;
         if(isset($_POST['esHeredero'])){

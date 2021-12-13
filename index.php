@@ -225,8 +225,17 @@
                                             $id = $mostrar['idPersona'];
                                             $sql2 = "SELECT * FROM cargo WHERE idCargo = (SELECT Cargo_idCargo FROM administrador WHERE Persona_idPersona = '$id')";
                                             $result2 = mysqli_query($conn, $sql2);
+
                                             while($mostrar2 = mysqli_fetch_array($result2)){
-                                                $cargo = $mostrar2['NombreCargo'];
+                                                //Mostrar el cargo unicamente si lo tiene
+                                                echo  $mostrar2['NombreCargo'];
+                                                if($result2){
+                                                    $cargo = $mostrar2['NombreCargo'];
+                                                }
+                                                //si cargo es vacio
+                                                else{
+                                                    $cargo = "No tiene cargo";
+                                                }
                                             }
                                             ?>
                                             <?php if($mostrar['EsSocio'] == 1){
