@@ -324,8 +324,15 @@
             var marker = new google.maps.Marker({
                 position: { lat: 19.3437198, lng: -99.3629543 },
                 map: map,
-                icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-                title: "ORGANIZACION",
+                icon: {
+                        url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                        labelOrigin: { x: 12, y: -13}
+                },
+                label: {
+                    text: 'Asociacion',
+                    color: '#222222',
+                    fontSize: '14px'
+                }
             });
 
             for(var i = 1; i < arreglo.length; i++){
@@ -340,10 +347,18 @@
                     position: coords,
                     map: map,
                     animation: google.maps.Animation.DROP,
-                    label: id,
+                    icon: {
+                        url: 'toma.png',
+                        labelOrigin: { x: 12, y: -10}
+                    },
+                    label: {
+                        text: id,
+                        color: '#222222',
+                        fontSize: '12px'
+                    }
                 });
             }
-        }    
+        }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp0oPxwXimtvim2A34gQu5pqMcYH5WXSs&callback=initMap"
         async defer></script>
