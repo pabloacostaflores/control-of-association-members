@@ -7,6 +7,7 @@ if(isset($_POST['inventario'])){
     if($Objeto == "Otros"){
         $nombre = $_POST['nombreObjecto'];
         $descripcion = $_POST['Descripcion'];
+        $monto   = $_POST['monto'];
         $sql = "INSERT INTO objeto (Nombre, Descripcion, Cantidad) VALUES ('$nombre', '$descripcion', '$cantidad')";
         $result = mysqli_query($conn, $sql);
         if($result){
@@ -14,6 +15,7 @@ if(isset($_POST['inventario'])){
         }else{
             echo "<script>alert('Error al agregar objeto');</script>";
         }
+        
     }else{ 
         //Valida si hay stock
         $sql = "SELECT Cantidad FROM objeto WHERE idObjeto = '$Objeto'";

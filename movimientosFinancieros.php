@@ -139,8 +139,8 @@
                                             ?>
                                             <td><?php echo $mostrar['idOperacionesFinancieras']?></td>
                                             <td><?php echo $mostrar['Monto']?></td>
-                                            <td><?php echo $mostrar['Fecha']?></td>
                                             <td><?php echo $mostrar['Concepto']?></td>
+                                            <td><?php echo $mostrar['Fecha']?></td>
                                             <td><?php echo $nombre?></td>
                                         </tr>
                                         <?php

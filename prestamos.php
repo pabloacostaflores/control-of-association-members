@@ -31,7 +31,10 @@
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"></li>
                     <li class="nav-item"><a class="nav-link" href="index.php"><i class="fa fa-group"></i><span>Usuarios</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="movimientosFinancieros.php"><i class="fas fa-table"></i><span>Movimientos Financieros</span></a><a class="nav-link" href="movimientosInventario.php"><i class="fa fa-dropbox"></i><span>Movimientos Inventario</span></a><a class="nav-link" href="tomas.php"><i class="fa fa-bitbucket"></i><span>Tomas</span></a><a class="nav-link active" href="prestamos.php"><i class="fa fa-institution"></i><span>Prestamos</span></a><a class="nav-link" href="calendario.php"><i class="fa fa-calendar"></i><span>Calendario de Actividades</span></a></li>
+                    <?php if($sesion == 2){ ?>
+                        <li class="nav-item"><a class="nav-link" href="movimientosFinancieros.php"><i class="fas fa-table"></i><span>Movimientos Financieros</span></a></li>
+                    <?php } ?>
+                    <li class="nav-item"><a class="nav-link" href="movimientosInventario.php"><i class="fa fa-dropbox"></i><span>Movimientos Inventario</span></a><a class="nav-link" href="tomas.php"><i class="fa fa-bitbucket"></i><span>Tomas</span></a><a class="nav-link active" href="prestamos.php"><i class="fa fa-institution"></i><span>Prestamos</span></a><a class="nav-link" href="calendario.php"><i class="fa fa-calendar"></i><span>Calendario de Actividades</span></a></li>
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
                 </ul>
@@ -159,13 +162,26 @@
                                             ?>
                                             <?php
                                             //Sacar el nombre del prestatario
-                                            $id2 = $mostrar['Prestatario_idPrestatario'];
-                                            $sql3 = "SELECT Nombre FROM prestatario WHERE idPrestatario ='$id2'";
+                                            $id2 = $mostrar['Administrador_idAdministrador'];
+                                            $sql3 = "SELECT Nombre FROM persona WHERE idPersona=(SELECT Persona_idPersona FROM administrador WHERE idAdministrador ='$id2')";
+                                            $result3 = mysqli_query($conn, $sql3);
+                                            while($mostrar3 = mysqli_fetch_array($result3)){
+                                                $nombre2 = $mostrar3['Nombre'];
+                                            }
+                                            ?>
+                                            <?php
+                                            //Sacar el nombre del prestatario
+                                            $id3 = $mostrar['Persona_idPersona'];
+                                            $sql4 = "SELECT Nombre FROM persona WHERE idPersona='$id3'";
+                                            $result4 = mysqli_query($conn, $sql4);
+                                            while($mostrar4 = mysqli_fetch_array($result4)){
+                                                $nombre3 = $mostrar4['Nombre'];
+                                            }
                                             ?>
                                             <td><?php echo $mostrar['idPrestamos']?></td>
                                             <td><?php echo $nombre?></td>
-                                            <td><?php echo $mostrar['Administrador_idAdministrador']?></td>
-                                            <td><?php echo $mostrar['Persona_idPersona']?></td>
+                                            <td><?php echo $nombre2?></td>
+                                            <td><?php echo $nombre3?></td>
                                             <td><?php echo $mostrar['Cantidad']?></td>
                                             <td><?php echo $mostrar['Fecha']?></td>
                                             <td><?php echo $mostrar['Devuelto']?></td>
