@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 -- Base de datos: `mydb`
 --
 
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
+
 -- --------------------------------------------------------
 
 --
