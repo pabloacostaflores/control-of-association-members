@@ -52,74 +52,6 @@
                                     </form>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                        <h6 class="dropdown-header">alerts center</h6><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="me-3">
-                                                <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">December 12, 2019</span>
-                                                <p>A new monthly report is ready to download!</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="me-3">
-                                                <div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">December 7, 2019</span>
-                                                <p>$290.29 has been deposited into your account!</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="me-3">
-                                                <div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">December 2, 2019</span>
-                                                <p>Spending Alert: We've noticed unusually high spending for your account.</p>
-                                            </div>
-                                        </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                        <h6 class="dropdown-header">alerts center</h6><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image me-3"><img class="rounded-circle" src="assets/img/avatars/avatar4.jpeg">
-                                                <div class="bg-success status-indicator"></div>
-                                            </div>
-                                            <div class="fw-bold">
-                                                <div class="text-truncate"><span>Hi there! I am wondering if you can help me with a problem I've been having.</span></div>
-                                                <p class="small text-gray-500 mb-0">Emily Fowler - 58m</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image me-3"><img class="rounded-circle" src="assets/img/avatars/avatar2.jpeg">
-                                                <div class="status-indicator"></div>
-                                            </div>
-                                            <div class="fw-bold">
-                                                <div class="text-truncate"><span>I have the photos that you ordered last month!</span></div>
-                                                <p class="small text-gray-500 mb-0">Jae Chun - 1d</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image me-3"><img class="rounded-circle" src="assets/img/avatars/avatar3.jpeg">
-                                                <div class="bg-warning status-indicator"></div>
-                                            </div>
-                                            <div class="fw-bold">
-                                                <div class="text-truncate"><span>Last month's report looks great, I am very happy with the progress so far, keep up the good work!</span></div>
-                                                <p class="small text-gray-500 mb-0">Morgan Alvarez - 2d</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image me-3"><img class="rounded-circle" src="assets/img/avatars/avatar5.jpeg">
-                                                <div class="bg-success status-indicator"></div>
-                                            </div>
-                                            <div class="fw-bold">
-                                                <div class="text-truncate"><span>Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</span></div>
-                                                <p class="small text-gray-500 mb-0">Chicken the Dog · 2w</p>
-                                            </div>
-                                        </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                                    </div>
-                                </div>
-                                <div class="shadow dropdown-list dropdown-menu dropdown-menu-end" aria-labelledby="alertsDropdown"></div>
-                            </li>
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">Valerie Luna</span><img class="border rounded-circle img-profile" src="assets/img/avatars/menu.png"></a>
@@ -152,7 +84,7 @@
                                 <p class="text-primary m-0 fw-bold">Reporte Toma</p>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form method = "post">
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3"><label class="form-label" for="username"><strong>Fecha del reporte</strong></label><input class="form-control" type="date" name="fecha" required=""></div>
@@ -167,8 +99,11 @@
                                             <div class="mb-3"></div>
                                         </div>
                                     </div>
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Añadir</button></div>
+                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" name="report">Añadir</button></div>
                                 </form>
+                                <?php
+                                    include("repTomas.php");
+                                ?>
                             </div>
                         </div>
                         <div class="card shadow mb-3">
@@ -176,7 +111,7 @@
                                 <p class="text-primary m-0 fw-bold">Reparaciones en tomas</p>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form method = "post">
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3"><label class="form-label" for="username"><strong>Fecha del reporte</strong></label><input class="form-control" type="date" name="fechaRep" required=""></div>
@@ -191,14 +126,18 @@
                                             <div class="mb-3"></div>
                                         </div>
                                     </div>
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Añadir</button></div>
+                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" name = "rep">Añadir</button></div>
                                 </form>
+                                <?php
+                                
+                                    include("Reparacion.php");
+                                ?>
                             </div>
                         </div>
                     </div>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Historial de reportes</p>
+                            <p class="text-primary m-0 fw-bold">Historial de reparaciones</p>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -221,70 +160,33 @@
                                             <th>Id Reparacion</th>
                                             <th>Detalles</th>
                                             <th>Fecha</th>
-                                            <th>Id de Toma</th>
+                                            <th>Id de contrato o toma</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php
+                                        include("assets/php/conexion.php");
+                                        $sql = "SELECT * FROM reparaciontoma";
+                                        $result = mysqli_query($conn, $sql);
+                                        while($mostrar = mysqli_fetch_array($result)){
+                                        ?>
                                         <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
+                                            <?php
+                                            $id = $mostrar['Persona_idPersona'];
+                                            $sql2 = "SELECT Nombre FROM persona WHERE idPersona = '$id'";
+                                            $result2 = mysqli_query($conn, $sql2);
+                                            while($mostrar2 = mysqli_fetch_array($result2)){
+                                                $nombre= $mostrar2['Nombre'];
+                                            }
+                                            ?>
+                                            <td><?php echo $mostrar['idReparacionToma']?></td>
+                                            <td><?php echo $mostrar['Descripcion']?></td>
+                                            <td><?php echo $mostrar['Fecha']?></td>
+                                            <td><?php echo $nombre?></td>
                                         </tr>
-                                        <tr>
-                                            <td>Angelica Ramos</td>
-                                            <td>Chief Executive Officer(CEO)</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bradley Greer</td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>41</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brenden Wagner</td>
-                                            <td>Software Engineer</td>
-                                            <td>San Francisco</td>
-                                            <td>28</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brielle Williamson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>New York</td>
-                                            <td>61</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bruno Nash<br></td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>38</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Caesar Vance</td>
-                                            <td>Pre-Sales Support</td>
-                                            <td>New York</td>
-                                            <td>21</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cara Stevens</td>
-                                            <td>Sales Assistant</td>
-                                            <td>New York</td>
-                                            <td>46</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior JavaScript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                        </tr>
+                                        <?php
+                                        }
+                                    ?>
                                     </tbody>
                                     <tfoot>
                                         <tr></tr>
@@ -311,7 +213,7 @@
                     </div>
                     <div class="card shadow" style="margin: 20px 0px 0px 0px;">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Historial de reparaciones</p>
+                            <p class="text-primary m-0 fw-bold">Historial de reportes</p>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -334,70 +236,33 @@
                                             <th>Id Reporte</th>
                                             <th>Descripcion</th>
                                             <th>Fecha</th>
-                                            <th>Id de Acusado</th>
+                                            <th>Nombre de Acusado</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php
+                                        include("assets/php/conexion.php");
+                                        $sql = "SELECT * FROM reportetoma";
+                                        $result = mysqli_query($conn, $sql);
+                                        while($mostrar = mysqli_fetch_array($result)){
+                                        ?>
                                         <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
+                                            <?php
+                                            $id = $mostrar['Persona_idPersona'];
+                                            $sql2 = "SELECT Nombre FROM persona WHERE idPersona = '$id'";
+                                            $result2 = mysqli_query($conn, $sql2);
+                                            while($mostrar2 = mysqli_fetch_array($result2)){
+                                                $nombre= $mostrar2['Nombre'];
+                                            }
+                                            ?>
+                                            <td><?php echo $mostrar['idReporteToma']?></td>
+                                            <td><?php echo $mostrar['Descripcion']?></td>
+                                            <td><?php echo $mostrar['Fecha']?></td>
+                                            <td><?php echo $nombre?></td>
                                         </tr>
-                                        <tr>
-                                            <td>Angelica Ramos</td>
-                                            <td>Chief Executive Officer(CEO)</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bradley Greer</td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>41</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brenden Wagner</td>
-                                            <td>Software Engineer</td>
-                                            <td>San Francisco</td>
-                                            <td>28</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brielle Williamson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>New York</td>
-                                            <td>61</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bruno Nash<br></td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>38</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Caesar Vance</td>
-                                            <td>Pre-Sales Support</td>
-                                            <td>New York</td>
-                                            <td>21</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cara Stevens</td>
-                                            <td>Sales Assistant</td>
-                                            <td>New York</td>
-                                            <td>46</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior JavaScript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                        </tr>
+                                        <?php
+                                        }
+                                        ?>
                                     </tbody>
                                     <tfoot>
                                         <tr></tr>

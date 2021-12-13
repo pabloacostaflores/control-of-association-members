@@ -157,9 +157,15 @@
                                                 $nombre = $mostrar2['Descripcion'];
                                             }
                                             ?>
+                                            <?php
+                                            //Sacar el nombre del prestatario
+                                            $id2 = $mostrar['Prestatario_idPrestatario'];
+                                            $sql3 = "SELECT Nombre FROM prestatario WHERE idPrestatario ='$id2'";
+                                            ?>
                                             <td><?php echo $mostrar['idPrestamos']?></td>
                                             <td><?php echo $nombre?></td>
                                             <td><?php echo $mostrar['Administrador_idAdministrador']?></td>
+                                            <td><?php echo $mostrar['Persona_idPersona']?></td>
                                             <td><?php echo $mostrar['Cantidad']?></td>
                                             <td><?php echo $mostrar['Fecha']?></td>
                                             <td><?php echo $mostrar['Devuelto']?></td>
