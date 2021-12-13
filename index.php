@@ -218,26 +218,12 @@
                                         include("assets/php/conexion.php");
                                         $sql = "SELECT * FROM persona";
                                         $result = mysqli_query($conn, $sql);
-                                        while($mostrar = mysqli_fetch_array($result)){
+                                        $sql2 = "SELECT p.idPersona, p.Nombre, c.NombreCargo, p.Telefono, p.coordX, p.coordY, p.EsSocio, p.EsHeredero FROM cargo c, administrador a, persona p WHERE a.Persona_idPersona = p.idPersona and a.Cargo_idCargo = c.idCargo;";
+                                        $result2 = mysqli_query($conn, $sql2);
+                                        while($mostrar = mysqli_fetch_array($result2)){
+                                            $cargo = $mostrar['NombreCargo'];
                                         ?>
                                         <tr>
-                                            <?php
-                                            $id = $mostrar['idPersona'];
-                                            $sql2 = "SELECT * FROM cargo WHERE idCargo = (SELECT Cargo_idCargo FROM administrador WHERE Persona_idPersona = '$id')";
-                                            $result2 = mysqli_query($conn, $sql2);
-
-                                            while($mostrar2 = mysqli_fetch_array($result2)){
-                                                //Mostrar el cargo unicamente si lo tiene
-                                                echo  $mostrar2['NombreCargo'];
-                                                if($result2){
-                                                    $cargo = $mostrar2['NombreCargo'];
-                                                }
-                                                //si cargo es vacio
-                                                else{
-                                                    $cargo = "No tiene cargo";
-                                                }
-                                            }
-                                            ?>
                                             <?php if($mostrar['EsSocio'] == 1){
                                                 $socio = "Si";
                                             }else{
@@ -256,9 +242,39 @@
                                             <td><?php echo $socio?></td>
                                             <td><?php echo $here?></td>
                                         </tr>
-                                        <?php
+                                            <?php
                                         }
                                         ?>
+                                        <?php
+                                        include("assets/php/conexion.php");
+                                        $sql = "SELECT * FROM persona WHERE idPersona NOT IN (SELECT Persona_idPersona FROM administrador)";
+                                        $result = mysqli_query($conn, $sql);
+                                        while($mostrar = mysqli_fetch_array($result)){
+                                            $cargo = "Sin cargo";
+                                        ?>
+                                        <tr>
+                                            <?php if($mostrar['EsSocio'] == 1){
+                                                $socio = "Si";
+                                            }else{
+                                                $socio = "No";
+                                            } ?>
+                                            <?php if($mostrar['EsHeredero'] == 1){
+                                                $here = "Si";
+                                            }else{
+                                                $here = "No";
+                                            } ?>
+                                            <td><?php echo $mostrar['idPersona']?></td>
+                                            <td><?php echo $mostrar['Nombre']?></td>
+                                            <td><?php echo $cargo?></td>
+                                            <td><?php echo $mostrar['Telefono']?></td>
+                                            <td><?php echo $mostrar['Dirreccion']?></td>
+                                            <td><?php echo $socio?></td>
+                                            <td><?php echo $here?></td>
+                                        </tr>
+                                            <?php
+                                        }
+                                        ?>
+                                        
                                     </tbody>
                                     <tfoot>
                                         <tr></tr>

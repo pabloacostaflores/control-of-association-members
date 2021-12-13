@@ -99,10 +99,10 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Mostar<select class="d-inline-block form-select form-select-sm">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
+                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Mostar<select class="d-inline-block form-select form-select-sm" name = "opciones">
+                                                <option value="5" selected="">5</option>
+                                                <option value="10">10</option>
+                                                <option value="15">15</option>
                                                 <option value="100">100</option>
                                             </select>&nbsp;</label></div>
                                 </div>
@@ -133,6 +133,7 @@
                                             $id = $mostrar['Administrador_idAdministrador'];
                                             $sql2 = "SELECT Nombre FROM persona WHERE idPersona = (SELECT Persona_idPersona FROM administrador WHERE idAdministrador = '$id')";
                                             $result2 = mysqli_query($conn, $sql2);
+                                            
                                             while($mostrar2 = mysqli_fetch_array($result2)){
                                                 $nombre= $mostrar2['Nombre'];
                                             }
@@ -142,6 +143,7 @@
                                             <td><?php echo $mostrar['Concepto']?></td>
                                             <td><?php echo $mostrar['Fecha']?></td>
                                             <td><?php echo $nombre?></td>
+                                            
                                         </tr>
                                         <?php
                                         }
