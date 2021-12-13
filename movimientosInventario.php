@@ -75,7 +75,7 @@
                                         <div class="col">
                                             <div class="mb-3"><label class="form-label" for="username"><strong>Objeto</strong><br></label>
                                                 <br>
-                                                <label><select name="invt" class= "dropdown-item">
+                                                <label><select id="drop1" name="invt" class= "dropdown-item">
                                                 <?php
                                                 include("assets/php/conexion.php");
                                                 $sql = "SELECT * FROM objeto";
@@ -97,19 +97,12 @@
                                             <div class="mb-3"><label class="form-label" for="email"><strong>Cantidad</strong><br></label><input class="form-control" type="number" id="email-3" name="cantidad" required=""></div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="username"><strong>Nombre del nuevo Objeto</strong></label><input class="form-control" type="text" id="username-1" name="nombreObjecto" placeholder="Nombre del objeto"></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="email"><strong>Descripcion del nuevo objeto</strong><br></label><input class="form-control" type="text" id="email-1" name="Descripcion" placeholder="Detalles del objeto"></div>
-                                        </div>
+                                    <div class="row" id ="altrow" >
+                                        
                                     </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3"></div>
-                                            <div class="mb-3"><label class="form-label" for="username"><strong>Monto</strong></label><input class="form-control" type="number" id="username-2" name="monto" placeholder="$"></div>
-                                        </div>
+                                    <div class="row" id = "username-2">
+                                        <div class="col"><div class="mb-3">
+                                            <label class="form-label" for="username"><strong>Monto</strong></label><input class="form-control" type="number" id="username-2" name="monto" placeholder="$"></div></div>
                                     </div>
                                     <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" name ="inventario">Añadir</button></div>
                                 </form>
@@ -217,7 +210,24 @@
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
     <script> 
-        var dropdow 
+        var dropdow = document.getElementById("drop1");
+        dropdow.onchange = function(){
+            if (dropdow.value == "Otros") {
+                document.getElementById("altrow").innerHTML = '<div class="col"><div class="mb-3"><label class="form-label" for="username"><strong>Nombre del nuevo Objeto</strong></label><input class="form-control" type="text" id="username-1" name="nombreObjecto" placeholder="Nombre del objeto"></div></div><div class="col"><div class="mb-3"><label class="form-label" for="email"><strong>Descripcion del nuevo objeto</strong><br></label><input class="form-control" type="text" id="email-1" name="Descripcion" placeholder="Detalles del objeto"></div></div>';
+            } else {
+                document.getElementById("altrow").innerHTML = "";
+            }
+        }
+    </script>
+    <script>
+        var cantidad = document.getElementById("email-3");
+        cantidad.onchange = function(){
+            if (cantidad.value >= 0) {
+                document.getElementById("username-2").innerHTML = '<div class="col"><div class="mb-3"><label class="form-label" for="username"><strong>Monto</strong></label><input class="form-control" type="number" id="username-2" name="monto" placeholder="$"></div></div>';
+            } else {
+                document.getElementById("username-2").innerHTML = "";
+            }
+        }
     </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/theme.js"></script>
