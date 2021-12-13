@@ -76,7 +76,8 @@
                                 <form>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"></div><iframe allowfullscreen="" frameborder="0" loading="lazy" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCp0oPxwXimtvim2A34gQu5pqMcYH5WXSs&amp;q=Paris%2C+France&amp;zoom=11" width="100%" height="400"></iframe>
+                                            <div class="mb-3"></div>
+                                            <div id ="map" style="height: 500px; width: 100%;"> </div>
                                         </div>
                                     </div>
                                 </form>
@@ -314,7 +315,38 @@
         ?>
         var arreglo = <?php echo $jsonString; ?>;
         console.log(arreglo);
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 19.3437198, lng: -99.3629543 },
+                zoom: 17
+            });
+            var marker = new google.maps.Marker({
+                position: { lat: 19.3437198, lng: -99.3629543 },
+                map: map,
+                icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                title: "ORGANIZACION",
+            });
+
+            for(var i = 1; i < arreglo.length; i++){
+                if (arreglo[i][1] != null && arreglo[i][2] != null)
+                    var cordi = { lat: Number(arreglo[i][1]), lng: Number(arreglo[i][2]) };
+                    console.log(cordi);
+                    addMarker(cordi, arreglo[i][0]);
+            }
+
+            function addMarker(coords, id) {
+                var currCoord = new google.maps.Marker({
+                    position: coords,
+                    map: map,
+                    animation: google.maps.Animation.DROP,
+                    label: id,
+                });
+            }
+        }    
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp0oPxwXimtvim2A34gQu5pqMcYH5WXSs&callback=initMap"
+        async defer></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/theme.js"></script>
 </body>
