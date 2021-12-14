@@ -24,6 +24,32 @@ if(isset($_POST['aniadir'])){
             }
         }else{
             echo "<script>alert('Exito');</script>";
+            //Sacar el  mes actual
+            $mes = date("m");
+            //Sacar el año actual
+            $anio = date("Y");
+            //0 es no hecha, 1 es con pago y 2 es con presencia
+            //Hacer 5 inserts una por cada mes
+            $i=0;
+            while($i<5){
+                $sql = "INSERT INTO actividades(Mes, Anio, Estatus,idPersona) VALUES ('$mes','$anio','0','$contrato')";
+                $result = mysqli_query($conn, $sql);
+                if(!$result){
+                    echo "<script>alert('Error');</script>";
+                    if ( false===$result ) {
+                        printf("error: %s\n", mysqli_error($conn));
+                        }
+                    }else{
+                        echo "<script>alert('Exito');</script>";
+                        $mes++;
+                        if($mes>12){
+                            $mes=1;
+                            $anio++;
+                        }
+                    }
+                $i++;
+            }
+
         }
         
     
