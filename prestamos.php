@@ -56,7 +56,7 @@
                                 </div>
                             </li>
                             <li class="nav-item dropdown no-arrow">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">Valerie Luna</span><img class="border rounded-circle img-profile" src="assets/img/avatars/menu.png"></a>
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small" id="userNameField">Valerie Luna</span><img class="border rounded-circle img-profile" src="assets/img/avatars/menu.png"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a class="dropdown-item" href="<?php echo "logout.php";?>"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a></div>
                                 </div>
                             </li>
@@ -184,16 +184,31 @@
                                             <td><?php echo $nombre3?></td>
                                             <td><?php echo $mostrar['Cantidad']?></td>
                                             <td><?php echo $mostrar['Fecha']?></td>
-                                            <td><?php echo $mostrar['Devuelto']?></td>
+                                            <?php
+                                            if($mostrar['Devuelto'] == FALSE){
+                                            ?>
+                                            <td><a href="prestamos.php?devolver=<?php echo $mostrar['idPrestamos']?>"
+                                            class = "btn btn-primary btn-sm" name = "Devolver">Devolver</a></td>
+                                            <?php
+                                            }else{
+                                            ?>
+                                            <td>Devuelto</td>
+                                            <?php
+                                            }
+                                            ?>
                                         </tr>
                                         <?php
                                         }
+                                        ?>
+                                        <?php
+                                        include("actualizarPrestamo.php");
                                         ?>
                                     </tbody>
                                     <tfoot>
                                         <tr></tr>
                                     </tfoot>
                                 </table>
+                            
                             </div>
                             <div class="row">
                                 <div class="col-md-6 align-self-center">
@@ -222,6 +237,20 @@
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+        <?php
+            include("assets/php/conexion.php");
+            $id = $_SESSION['idPersona'];
+            $sql = "SELECT Nombre FROM persona WHERE idPersona = (SELECT Persona_idPersona FROM administrador WHERE idAdministrador = '$id')";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_array($result);
+            $nombre = $row['Nombre'];
+            ?> 
+        document.getElementById("userNameField").innerHTML = "<?php echo $nombre; ?>";
+    </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/theme.js"></script>
 </body>

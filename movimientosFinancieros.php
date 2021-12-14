@@ -52,7 +52,7 @@
                                 </div>
                             </li>
                             <li class="nav-item dropdown no-arrow">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">Valerie Luna</span><img class="border rounded-circle img-profile" src="assets/img/avatars/menu.png"></a>
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small" id="userNameField">Valerie Luna</span><img class="border rounded-circle img-profile" src="assets/img/avatars/menu.png"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a class="dropdown-item" href="<?php echo "logout.php";?>"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a></div>
                                 </div>
                             </li>
@@ -99,10 +99,10 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Mostar<select class="d-inline-block form-select form-select-sm">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
+                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Mostar<select class="d-inline-block form-select form-select-sm" name = "opciones">
+                                                <option value="5" selected="">5</option>
+                                                <option value="10">10</option>
+                                                <option value="15">15</option>
                                                 <option value="100">100</option>
                                             </select>&nbsp;</label></div>
                                 </div>
@@ -133,6 +133,7 @@
                                             $id = $mostrar['Administrador_idAdministrador'];
                                             $sql2 = "SELECT Nombre FROM persona WHERE idPersona = (SELECT Persona_idPersona FROM administrador WHERE idAdministrador = '$id')";
                                             $result2 = mysqli_query($conn, $sql2);
+                                            
                                             while($mostrar2 = mysqli_fetch_array($result2)){
                                                 $nombre= $mostrar2['Nombre'];
                                             }
@@ -142,6 +143,7 @@
                                             <td><?php echo $mostrar['Concepto']?></td>
                                             <td><?php echo $mostrar['Fecha']?></td>
                                             <td><?php echo $nombre?></td>
+                                            
                                         </tr>
                                         <?php
                                         }
@@ -179,6 +181,20 @@
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+        <?php
+            include("assets/php/conexion.php");
+            $id = $_SESSION['idPersona'];
+            $sql = "SELECT Nombre FROM persona WHERE idPersona = (SELECT Persona_idPersona FROM administrador WHERE idAdministrador = '$id')";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_array($result);
+            $nombre = $row['Nombre'];
+            ?> 
+        document.getElementById("userNameField").innerHTML = "<?php echo $nombre; ?>";
+    </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/theme.js"></script>
 </body>

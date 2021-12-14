@@ -57,7 +57,7 @@
                             </li>
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">Valerie Luna</span><img class="border rounded-circle img-profile" src="assets/img/avatars/menu.png"></a>
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small" id="userNameField">Valerie Luna</span><img class="border rounded-circle img-profile" src="assets/img/avatars/menu.png"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a></div>
                                 </div>
                             </li>
@@ -324,8 +324,15 @@
             var marker = new google.maps.Marker({
                 position: { lat: 19.3437198, lng: -99.3629543 },
                 map: map,
-                icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-                title: "ORGANIZACION",
+                icon: {
+                        url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                        labelOrigin: { x: 12, y: -13}
+                },
+                label: {
+                    text: 'Asociacion',
+                    color: '#222222',
+                    fontSize: '14px'
+                }
             });
 
             for(var i = 1; i < arreglo.length; i++){
@@ -340,10 +347,32 @@
                     position: coords,
                     map: map,
                     animation: google.maps.Animation.DROP,
-                    label: id,
+                    icon: {
+                        url: 'toma.png',
+                        labelOrigin: { x: 12, y: -10}
+                    },
+                    label: {
+                        text: id,
+                        color: '#222222',
+                        fontSize: '12px'
+                    }
                 });
             }
-        }    
+        }
+    </script>
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+        <?php
+            include("assets/php/conexion.php");
+            $id = $_SESSION['idPersona'];
+            $sql = "SELECT Nombre FROM persona WHERE idPersona = (SELECT Persona_idPersona FROM administrador WHERE idAdministrador = '$id')";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_array($result);
+            $nombre = $row['Nombre'];
+            ?> 
+        document.getElementById("userNameField").innerHTML = "<?php echo $nombre; ?>";
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp0oPxwXimtvim2A34gQu5pqMcYH5WXSs&callback=initMap"
         async defer></script>
