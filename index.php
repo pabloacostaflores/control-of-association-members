@@ -216,8 +216,20 @@
                                     <tbody>
                                     <?php
                                         include("assets/php/conexion.php");
-                                        $sql = "SELECT * FROM persona";
+                                        //Probando paginacion
+                                        $limit = isset($_POST["limit"]) ? $_POST["limit"] : 10;
+                                        $page = isset($GET["page"]) ? $GET["page"] : 1;
+                                        $start = ($page - 1) * $limit;
+                                        $sql = "SELECT * FROM persona LIMIT $start, $limit";
+                                        $num = $conn -> Query("SELECT COUNT(idPersona) as id FROM persona");
+                                        $custNums = $num -> fetch_all(MYSQLI_ASSOC);
+                                        $total = $custNums[0]['id'];
                                         $result = mysqli_query($conn, $sql);
+                                        $pages = ceil($total / $limit);
+
+                                        $Previous = $page - 1;
+                                        $Next = $page + 1;
+
                                         while($mostrar = mysqli_fetch_array($result)){
                                         ?>
                                         <tr>
@@ -272,7 +284,7 @@
                                 <div class="col-md-6">
                                     <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
                                         <ul class="pagination">
-                                            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                            <li class="page-item disabled"><a class="page-link" href="index.php?page=<?$Previous; ?>" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
                                             <li class="page-item active"><a class="page-link" href="#">1</a></li>
                                             <li class="page-item"><a class="page-link" href="#">2</a></li>
                                             <li class="page-item"><a class="page-link" href="#">3</a></li>
