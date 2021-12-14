@@ -238,12 +238,6 @@
                                         $custNums = $num -> fetch_all(MYSQLI_ASSOC);
                                         $total = $custNums[0]['id'];
                                         $result = mysqli_query($conn, $sql);
-                                        $pages = ceil($total / $limit);
-
-                                        $Previous = $page - 1;
-                                        $Next = $page + 1;
-
-                                        while($mostrar = mysqli_fetch_array($result)){
                                         $sql2 = "SELECT p.idPersona, p.Nombre, c.NombreCargo, p.Telefono, p.coordX, p.coordY, p.EsSocio, p.EsHeredero FROM cargo c, administrador a, persona p WHERE a.Persona_idPersona = p.idPersona and a.Cargo_idCargo = c.idCargo;";
                                         $result2 = mysqli_query($conn, $sql2);
                                         while($mostrar = mysqli_fetch_array($result2)){
