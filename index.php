@@ -181,6 +181,19 @@
                             ?>
                         </div>
                     </div>
+
+                    <div class="card shadow" style="display: none; margin-bottom: 25px; " id="mapUsuario"> <!--Aqui va el mapa-->
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Direccion cliente</p>
+                        </div>
+                        <div class="card-body">
+                            <div id="mapclient" style="height: 500px; ">
+                            </div>
+                        </div>
+                        <div class="mb-3"><button class="btn btn-primary btn-sm" id = "closebtn" style = "float: right; margin-right: 10px; margin-bottom: 10px;">Cerrar</button></div>
+                        <div style="clear: both;"></div>
+                    </div>
+
                     <div class="card shadow">
                         <div class="card-header py-3">
                             <p class="text-primary m-0 fw-bold">Usuarios Registrados</p>
@@ -238,9 +251,27 @@
                                             <td><?php echo $mostrar['Nombre']?></td>
                                             <td><?php echo $cargo?></td>
                                             <td><?php echo $mostrar['Telefono']?></td>
-                                            <td><?php echo $mostrar['Dirreccion']?></td>
+                                            <td>
+                                                <button id="map<?php echo $mostrar['idPersona']; ?>">Ver</button>
+                                                <script>
+                                                    document.getElementById("map<?php echo $mostrar['idPersona']; ?>").addEventListener("click", function(){
+                                                        document.getElementById("mapUsuario").style.display = "block";
+                                                        var coordX = <?php echo $mostrar['coordX']; ?>;
+                                                        var coordY = <?php echo $mostrar['coordY']; ?>;
+                                                        var map2 = new google.maps.Map(document.getElementById('mapclient'), {
+                                                            zoom: 19,
+                                                            center: {lat: coordX, lng: coordY}
+                                                        });
+                                                        var marker = new google.maps.Marker({
+                                                            position: {lat: coordX, lng: coordY},
+                                                            map: map2
+                                                        });
+                                                    });
+                                                </script>
+                                            </td>
                                             <td><?php echo $socio?></td>
                                             <td><?php echo $here?></td>
+                                            <td><button style="background: red;">X</button> </td>
                                         </tr>
                                             <?php
                                         }
@@ -267,9 +298,28 @@
                                             <td><?php echo $mostrar['Nombre']?></td>
                                             <td><?php echo $cargo?></td>
                                             <td><?php echo $mostrar['Telefono']?></td>
-                                            <td><?php echo $mostrar['Dirreccion']?></td>
+                                            <td>
+                                                <button id="map<?php echo $mostrar['idPersona']; ?>">Ver</button>
+                                                <script>
+                                                    document.getElementById("map<?php echo $mostrar['idPersona']; ?>").addEventListener("click", function(){
+                                                        document.getElementById("mapUsuario").style.display = "block";
+                                                        var coordX = <?php echo $mostrar['coordX']; ?>;
+                                                        var coordY = <?php echo $mostrar['coordY']; ?>;
+                                                        var map2 = new google.maps.Map(document.getElementById('mapclient'), {
+                                                            zoom: 19,
+                                                            center: {lat: coordX, lng: coordY}
+                                                        });
+                                                        var marker = new google.maps.Marker({
+                                                            position: {lat: coordX, lng: coordY},
+                                                            map: map2
+                                                        });
+                                                    });
+                                                </script>
+                                            </td>
+
                                             <td><?php echo $socio?></td>
                                             <td><?php echo $here?></td>
+                                            <td><button style="background: red;">X</button> </td>
                                         </tr>
                                             <?php
                                         }
@@ -315,6 +365,7 @@
                 center: { lat: 19.3437198, lng: -99.3629543 },
                 zoom: 17
             });
+            
             // This event listener calls addMarker() when the map is clicked.
             google.maps.event.addListener(map, "click", (event) => {
                 document.getElementById("coorx").value = event.latLng.lat();
@@ -340,22 +391,12 @@
                 pastCoord = currCoord;
             }
         }
+        document.getElementById("closebtn").addEventListener("click", function(){
+            document.getElementById("mapUsuario").style.display = "none";
+        });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp0oPxwXimtvim2A34gQu5pqMcYH5WXSs&callback=initMap"
         async defer></script>
-    <script> 
-        var table = document.getElementById('dataTable');
-        for(var i = 1; i < table.rows.length; i++) {
-            table.rows[i].insertCell(7);
-            for(var j = 0; j < table.rows[i].cells.length; j++) {
-                if(j == 4) {
-                    table.rows[i].cells[j].innerHTML = "<button>Ver</button>";
-                } else if(j == 7) {
-                    table.rows[i].cells[j].innerHTML = "<button style='background:red;'>X</button>";
-                }
-            }            
-        }
-    </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/theme.js"></script>
 </body>
