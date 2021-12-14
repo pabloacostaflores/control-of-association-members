@@ -68,7 +68,7 @@
                                 <p class="text-primary m-0 fw-bold">Movimiento Financieros</p>
                             </div>
                             <div class="card-body">
-                                <form method = "post">
+                                <form method = "post" enctype = "multipart/form-data">
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3"><label class="form-label" for="username"><strong>Monto</strong></label><input class="form-control" type="number" id="username-1" name="monto" placeholder="$" required=""></div>
@@ -76,6 +76,7 @@
                                         </div>
                                         <div class="col">
                                             <div class="mb-3"><label class="form-label" for="email"><strong>Concepto</strong><br></label><input class="form-control" type="text" id="email-1" name="concepto" placeholder="Indica el motivo de este ingreso o egreso" required=""></div>
+                                            <div class="mb-3"><label class="form-label" for="email"><strong>Factura</strong><br></label><input class="form-control" type="file" name="file" required="" value="" multiple=""></div>
                                         </div>
                                     </div>
                                     <div class="row">

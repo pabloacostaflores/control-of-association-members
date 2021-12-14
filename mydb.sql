@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 14-12-2021 a las 08:34:16
--- Versión del servidor: 10.4.19-MariaDB
--- Versión de PHP: 8.0.7
+-- Host: 127.0.0.1
+-- Generation Time: Dec 14, 2021 at 09:49 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `mydb`
+-- Database: `mydb`
 --
 CREATE DATABASE IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `mydb`;
@@ -26,7 +26,7 @@ USE `mydb`;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `actividades`
+-- Table structure for table `actividades`
 --
 
 CREATE TABLE `actividades` (
@@ -40,7 +40,7 @@ CREATE TABLE `actividades` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `administrador`
+-- Table structure for table `administrador`
 --
 
 CREATE TABLE `administrador` (
@@ -51,7 +51,7 @@ CREATE TABLE `administrador` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `administrador`
+-- Dumping data for table `administrador`
 --
 
 INSERT INTO `administrador` (`idAdministrador`, `Contrasenia`, `Cargo_idCargo`, `Persona_idPersona`) VALUES
@@ -66,7 +66,7 @@ INSERT INTO `administrador` (`idAdministrador`, `Contrasenia`, `Cargo_idCargo`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cargo`
+-- Table structure for table `cargo`
 --
 
 CREATE TABLE `cargo` (
@@ -75,7 +75,7 @@ CREATE TABLE `cargo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `cargo`
+-- Dumping data for table `cargo`
 --
 
 INSERT INTO `cargo` (`idCargo`, `NombreCargo`) VALUES
@@ -87,7 +87,7 @@ INSERT INTO `cargo` (`idCargo`, `NombreCargo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `objeto`
+-- Table structure for table `objeto`
 --
 
 CREATE TABLE `objeto` (
@@ -98,7 +98,7 @@ CREATE TABLE `objeto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `objeto`
+-- Dumping data for table `objeto`
 --
 
 INSERT INTO `objeto` (`idObjeto`, `Nombre`, `Descripcion`, `Cantidad`) VALUES
@@ -113,7 +113,7 @@ INSERT INTO `objeto` (`idObjeto`, `Nombre`, `Descripcion`, `Cantidad`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `operacionesfinancieras`
+-- Table structure for table `operacionesfinancieras`
 --
 
 CREATE TABLE `operacionesfinancieras` (
@@ -121,26 +121,33 @@ CREATE TABLE `operacionesfinancieras` (
   `Monto` double NOT NULL,
   `Fecha` date NOT NULL,
   `Concepto` varchar(100) NOT NULL,
-  `Administrador_idAdministrador` int(11) NOT NULL
+  `Administrador_idAdministrador` int(11) NOT NULL,
+  `factura` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `operacionesfinancieras`
+-- Dumping data for table `operacionesfinancieras`
 --
 
-INSERT INTO `operacionesfinancieras` (`idOperacionesFinancieras`, `Monto`, `Fecha`, `Concepto`, `Administrador_idAdministrador`) VALUES
-(18, 52, '2021-12-05', 'Prueba', 1234568),
-(19, 52, '2021-12-05', 'Prueba', 1234568),
-(20, 500, '1990-12-12', 'Se compro una pasa', 1234568),
-(21, -6, '2020-12-11', 'Perdimos un dinosaurio', 1234568),
-(22, 504, '1200-12-11', 'Pago al programador', 1234568),
-(23, 40, '2021-12-13', 'Operacion en Inventario', 0),
-(24, 6210, '2021-12-13', 'Operacion en Inventario', 0);
+INSERT INTO `operacionesfinancieras` (`idOperacionesFinancieras`, `Monto`, `Fecha`, `Concepto`, `Administrador_idAdministrador`, `factura`) VALUES
+(18, 52, '2021-12-05', 'Prueba', 1234568, ''),
+(19, 52, '2021-12-05', 'Prueba', 1234568, ''),
+(20, 500, '1990-12-12', 'Se compro una pasa', 1234568, ''),
+(21, -6, '2020-12-11', 'Perdimos un dinosaurio', 1234568, ''),
+(22, 504, '1200-12-11', 'Pago al programador', 1234568, ''),
+(23, 40, '2021-12-13', 'Operacion en Inventario', 0, ''),
+(24, 6210, '2021-12-13', 'Operacion en Inventario', 0, ''),
+(25, 100, '2021-12-14', 'comprarandom', 1234568, '75519-'),
+(26, 200, '2021-12-15', 'testcompra', 1234568, '80771-menorquetres.png'),
+(27, 300, '2021-12-14', 'test', 1234568, '27970-menorquetres.png'),
+(28, 400, '2021-12-14', 'nose', 1234568, '7512-menorquetres.png'),
+(29, 500, '2021-12-14', 'sise', 1234568, '57863-menorquetres.png'),
+(30, 700, '2021-12-14', 'una italika', 1234568, '75829-minimalCoverageCode.png');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `operacioninventario`
+-- Table structure for table `operacioninventario`
 --
 
 CREATE TABLE `operacioninventario` (
@@ -153,7 +160,7 @@ CREATE TABLE `operacioninventario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `operacioninventario`
+-- Dumping data for table `operacioninventario`
 --
 
 INSERT INTO `operacioninventario` (`idOperacionInventario`, `Cantidad`, `FechaOperacion`, `Valor`, `Administrador_idAdministrador`, `Objeto_idObjeto`) VALUES
@@ -167,7 +174,7 @@ INSERT INTO `operacioninventario` (`idOperacionInventario`, `Cantidad`, `FechaOp
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `persona`
+-- Table structure for table `persona`
 --
 
 CREATE TABLE `persona` (
@@ -181,7 +188,7 @@ CREATE TABLE `persona` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `persona`
+-- Dumping data for table `persona`
 --
 
 INSERT INTO `persona` (`idPersona`, `Nombre`, `coordX`, `coordY`, `Telefono`, `EsSocio`, `EsHeredero`) VALUES
@@ -198,7 +205,7 @@ INSERT INTO `persona` (`idPersona`, `Nombre`, `coordX`, `coordY`, `Telefono`, `E
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `persona_has_actividades`
+-- Table structure for table `persona_has_actividades`
 --
 
 CREATE TABLE `persona_has_actividades` (
@@ -209,7 +216,7 @@ CREATE TABLE `persona_has_actividades` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `prestamos`
+-- Table structure for table `prestamos`
 --
 
 CREATE TABLE `prestamos` (
@@ -223,7 +230,7 @@ CREATE TABLE `prestamos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `prestamos`
+-- Dumping data for table `prestamos`
 --
 
 INSERT INTO `prestamos` (`idPrestamos`, `Cantidad`, `Fecha`, `Devuelto`, `Objeto_idObjeto`, `Administrador_idAdministrador`, `Persona_idPersona`) VALUES
@@ -236,7 +243,7 @@ INSERT INTO `prestamos` (`idPrestamos`, `Cantidad`, `Fecha`, `Devuelto`, `Objeto
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `reparaciontoma`
+-- Table structure for table `reparaciontoma`
 --
 
 CREATE TABLE `reparaciontoma` (
@@ -247,7 +254,7 @@ CREATE TABLE `reparaciontoma` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `reparaciontoma`
+-- Dumping data for table `reparaciontoma`
 --
 
 INSERT INTO `reparaciontoma` (`idReparacionToma`, `Fecha`, `Descripcion`, `Persona_idPersona`) VALUES
@@ -257,7 +264,7 @@ INSERT INTO `reparaciontoma` (`idReparacionToma`, `Fecha`, `Descripcion`, `Perso
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `reportetoma`
+-- Table structure for table `reportetoma`
 --
 
 CREATE TABLE `reportetoma` (
@@ -268,7 +275,7 @@ CREATE TABLE `reportetoma` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `reportetoma`
+-- Dumping data for table `reportetoma`
 --
 
 INSERT INTO `reportetoma` (`idReporteToma`, `Fecha`, `Descripcion`, `Persona_idPersona`) VALUES
@@ -276,18 +283,18 @@ INSERT INTO `reportetoma` (`idReporteToma`, `Fecha`, `Descripcion`, `Persona_idP
 (2, '1984-02-28', 'Fue una peda intenzaa', 7);
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `actividades`
+-- Indexes for table `actividades`
 --
 ALTER TABLE `actividades`
   ADD PRIMARY KEY (`idActividades`),
   ADD KEY `idPersona` (`idPersona`);
 
 --
--- Indices de la tabla `administrador`
+-- Indexes for table `administrador`
 --
 ALTER TABLE `administrador`
   ADD PRIMARY KEY (`idAdministrador`,`Cargo_idCargo`,`Persona_idPersona`),
@@ -295,26 +302,26 @@ ALTER TABLE `administrador`
   ADD KEY `fk_Administrador_Persona1_idx` (`Persona_idPersona`);
 
 --
--- Indices de la tabla `cargo`
+-- Indexes for table `cargo`
 --
 ALTER TABLE `cargo`
   ADD PRIMARY KEY (`idCargo`);
 
 --
--- Indices de la tabla `objeto`
+-- Indexes for table `objeto`
 --
 ALTER TABLE `objeto`
   ADD PRIMARY KEY (`idObjeto`);
 
 --
--- Indices de la tabla `operacionesfinancieras`
+-- Indexes for table `operacionesfinancieras`
 --
 ALTER TABLE `operacionesfinancieras`
   ADD PRIMARY KEY (`idOperacionesFinancieras`,`Administrador_idAdministrador`),
   ADD KEY `fk_OperacionesFinancieras_Administrador_idx` (`Administrador_idAdministrador`);
 
 --
--- Indices de la tabla `operacioninventario`
+-- Indexes for table `operacioninventario`
 --
 ALTER TABLE `operacioninventario`
   ADD PRIMARY KEY (`idOperacionInventario`,`Administrador_idAdministrador`,`Objeto_idObjeto`),
@@ -322,13 +329,13 @@ ALTER TABLE `operacioninventario`
   ADD KEY `fk_OperacionInventario_Objeto1_idx` (`Objeto_idObjeto`);
 
 --
--- Indices de la tabla `persona`
+-- Indexes for table `persona`
 --
 ALTER TABLE `persona`
   ADD PRIMARY KEY (`idPersona`);
 
 --
--- Indices de la tabla `persona_has_actividades`
+-- Indexes for table `persona_has_actividades`
 --
 ALTER TABLE `persona_has_actividades`
   ADD PRIMARY KEY (`Persona_idPersona`,`Actividades_idActividades`),
@@ -336,7 +343,7 @@ ALTER TABLE `persona_has_actividades`
   ADD KEY `fk_Persona_has_Actividades_Persona1_idx` (`Persona_idPersona`);
 
 --
--- Indices de la tabla `prestamos`
+-- Indexes for table `prestamos`
 --
 ALTER TABLE `prestamos`
   ADD PRIMARY KEY (`idPrestamos`,`Objeto_idObjeto`,`Administrador_idAdministrador`,`Persona_idPersona`),
@@ -345,116 +352,116 @@ ALTER TABLE `prestamos`
   ADD KEY `fk_Prestamos_Persona1_idx` (`Persona_idPersona`);
 
 --
--- Indices de la tabla `reparaciontoma`
+-- Indexes for table `reparaciontoma`
 --
 ALTER TABLE `reparaciontoma`
   ADD PRIMARY KEY (`idReparacionToma`,`Persona_idPersona`),
   ADD KEY `fk_ReporteToma_Persona1_idx` (`Persona_idPersona`);
 
 --
--- Indices de la tabla `reportetoma`
+-- Indexes for table `reportetoma`
 --
 ALTER TABLE `reportetoma`
   ADD PRIMARY KEY (`idReporteToma`,`Persona_idPersona`),
   ADD KEY `fk_ReporteToma_Persona1_idx` (`Persona_idPersona`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `actividades`
+-- AUTO_INCREMENT for table `actividades`
 --
 ALTER TABLE `actividades`
   MODIFY `idActividades` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `administrador`
+-- AUTO_INCREMENT for table `administrador`
 --
 ALTER TABLE `administrador`
   MODIFY `idAdministrador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12345699;
 
 --
--- AUTO_INCREMENT de la tabla `cargo`
+-- AUTO_INCREMENT for table `cargo`
 --
 ALTER TABLE `cargo`
   MODIFY `idCargo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `objeto`
+-- AUTO_INCREMENT for table `objeto`
 --
 ALTER TABLE `objeto`
   MODIFY `idObjeto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT de la tabla `operacionesfinancieras`
+-- AUTO_INCREMENT for table `operacionesfinancieras`
 --
 ALTER TABLE `operacionesfinancieras`
-  MODIFY `idOperacionesFinancieras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idOperacionesFinancieras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT de la tabla `operacioninventario`
+-- AUTO_INCREMENT for table `operacioninventario`
 --
 ALTER TABLE `operacioninventario`
   MODIFY `idOperacionInventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT de la tabla `prestamos`
+-- AUTO_INCREMENT for table `prestamos`
 --
 ALTER TABLE `prestamos`
   MODIFY `idPrestamos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT de la tabla `reparaciontoma`
+-- AUTO_INCREMENT for table `reparaciontoma`
 --
 ALTER TABLE `reparaciontoma`
   MODIFY `idReparacionToma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `reportetoma`
+-- AUTO_INCREMENT for table `reportetoma`
 --
 ALTER TABLE `reportetoma`
   MODIFY `idReporteToma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `actividades`
+-- Constraints for table `actividades`
 --
 ALTER TABLE `actividades`
   ADD CONSTRAINT `actividades_ibfk_1` FOREIGN KEY (`idPersona`) REFERENCES `persona` (`idPersona`);
 
 --
--- Filtros para la tabla `administrador`
+-- Constraints for table `administrador`
 --
 ALTER TABLE `administrador`
   ADD CONSTRAINT `fk_Administrador_Cargo1` FOREIGN KEY (`Cargo_idCargo`) REFERENCES `cargo` (`idCargo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Administrador_Persona1` FOREIGN KEY (`Persona_idPersona`) REFERENCES `persona` (`idPersona`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `operacionesfinancieras`
+-- Constraints for table `operacionesfinancieras`
 --
 ALTER TABLE `operacionesfinancieras`
   ADD CONSTRAINT `fk_OperacionesFinancieras_Administrador` FOREIGN KEY (`Administrador_idAdministrador`) REFERENCES `administrador` (`idAdministrador`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `operacioninventario`
+-- Constraints for table `operacioninventario`
 --
 ALTER TABLE `operacioninventario`
   ADD CONSTRAINT `fk_OperacionInventario_Administrador1` FOREIGN KEY (`Administrador_idAdministrador`) REFERENCES `administrador` (`idAdministrador`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_OperacionInventario_Objeto1` FOREIGN KEY (`Objeto_idObjeto`) REFERENCES `objeto` (`idObjeto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `persona_has_actividades`
+-- Constraints for table `persona_has_actividades`
 --
 ALTER TABLE `persona_has_actividades`
   ADD CONSTRAINT `fk_Persona_has_Actividades_Actividades1` FOREIGN KEY (`Actividades_idActividades`) REFERENCES `actividades` (`idActividades`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Persona_has_Actividades_Persona1` FOREIGN KEY (`Persona_idPersona`) REFERENCES `persona` (`idPersona`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `prestamos`
+-- Constraints for table `prestamos`
 --
 ALTER TABLE `prestamos`
   ADD CONSTRAINT `fk_Prestamos_Administrador1` FOREIGN KEY (`Administrador_idAdministrador`) REFERENCES `administrador` (`idAdministrador`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -462,13 +469,13 @@ ALTER TABLE `prestamos`
   ADD CONSTRAINT `fk_Prestamos_Persona1` FOREIGN KEY (`Persona_idPersona`) REFERENCES `persona` (`idPersona`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `reparaciontoma`
+-- Constraints for table `reparaciontoma`
 --
 ALTER TABLE `reparaciontoma`
   ADD CONSTRAINT `fk_ReporteToma_Persona10` FOREIGN KEY (`Persona_idPersona`) REFERENCES `persona` (`idPersona`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `reportetoma`
+-- Constraints for table `reportetoma`
 --
 ALTER TABLE `reportetoma`
   ADD CONSTRAINT `fk_ReporteToma_Persona1` FOREIGN KEY (`Persona_idPersona`) REFERENCES `persona` (`idPersona`) ON DELETE NO ACTION ON UPDATE NO ACTION;
