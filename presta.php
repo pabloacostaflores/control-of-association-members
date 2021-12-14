@@ -5,7 +5,9 @@ if(isset($_POST['pres'])){
     $idAdmin = $_SESSION['idPersona'];
     $idPersona = $_POST['IdContrato'];
     $Producto = $_POST['obj'];
-    $sql="INSERT INTO prestamos(Cantidad, Devuelto, Objeto_idObjeto, Administrador_idAdministrador, Persona_idPersona) VALUES ('$cantidad','False','$Producto','$idAdmin','$idPersona')"  ;
+    date_default_timezone_set('America/Mexico_City');
+    $fecha = date('Y-m-d');
+    $sql="INSERT INTO prestamos(Cantidad,Fecha, Devuelto, Objeto_idObjeto, Administrador_idAdministrador, Persona_idPersona) VALUES ('$cantidad','$fecha','False','$Producto','$idAdmin','$idPersona')"  ;
     $result = mysqli_query($conn, $sql);
     if($result){
         echo "<script>alert('Prestamo realizado con exito');</script>";

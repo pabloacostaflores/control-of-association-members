@@ -184,16 +184,31 @@
                                             <td><?php echo $nombre3?></td>
                                             <td><?php echo $mostrar['Cantidad']?></td>
                                             <td><?php echo $mostrar['Fecha']?></td>
-                                            <td><?php echo $mostrar['Devuelto']?></td>
+                                            <?php
+                                            if($mostrar['Devuelto'] == FALSE){
+                                            ?>
+                                            <td><a href="prestamos.php?devolver=<?php echo $mostrar['idPrestamos']?>"
+                                            class = "btn btn-primary btn-sm" name = "Devolver">Devolver</a></td>
+                                            <?php
+                                            }else{
+                                            ?>
+                                            <td>Devuelto</td>
+                                            <?php
+                                            }
+                                            ?>
                                         </tr>
                                         <?php
                                         }
+                                        ?>
+                                        <?php
+                                        include("actualizarPrestamo.php");
                                         ?>
                                     </tbody>
                                     <tfoot>
                                         <tr></tr>
                                     </tfoot>
                                 </table>
+                            
                             </div>
                             <div class="row">
                                 <div class="col-md-6 align-self-center">
