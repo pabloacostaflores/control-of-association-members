@@ -201,12 +201,12 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length-1" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Mostrar<select class="d-inline-block form-select form-select-sm">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>&nbsp;</label></div>
+                                    <div id="dataTable_length-1" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Mostrar<form method="post" action="#"><select name="limit-records" id="limit-records" class="d-inline-block form-select form-select-sm">
+                                                <option selected="selected">No seleccionado</option>
+                                                <?php foreach([25,50,100,500] as $limit) : ?>
+                                                    <option <?php if( isset($_POST["limit-records"]) && $_POST["limit-records"] == $limit) echo "selected" ?> value="<?= $limit; ?>"><?= $limit; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>&nbsp;</form></label></div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="text-md-end dataTables_filter" id="dataTable_filter-1"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Buscar"></label></div>
@@ -226,20 +226,26 @@
                                             <th>Eliminar</th>
                                         </tr>
                                     </thead>
+                                    <div class="pagination">
                                     <tbody>
                                     <?php
                                         include("assets/php/conexion.php");
                                         //Probando paginacion
-                                        $limit = isset($_POST["limit"]) ? $_POST["limit"] : 10;
+                                        $limit = isset($_POST["limit-records"]) ? $_POST["limit-records"] : 10;
                                         $page = isset($GET["page"]) ? $GET["page"] : 1;
                                         $start = ($page - 1) * $limit;
-                                        $sql = "SELECT * FROM persona LIMIT $start, $limit";
-                                        $num = $conn -> Query("SELECT COUNT(idPersona) as id FROM persona");
+
+                                        $sql2 = "SELECT p.idPersona, p.Nombre, c.NombreCargo, p.Telefono, p.coordX, p.coordY, p.EsSocio, p.EsHeredero FROM cargo c, administrador a, persona p WHERE (a.Persona_idPersona = p.idPersona and a.Cargo_idCargo = c.idCargo) LIMIT $start, $limit";
+                                        $result2 = mysqli_query($conn, $sql2);
+
+                                        $num = $conn -> query("SELECT COUNT(p.idPersona) as id FROM cargo c, administrador a, persona p WHERE a.Persona_idPersona = p.idPersona and a.Cargo_idCargo = c.idCargo;");
                                         $custNums = $num -> fetch_all(MYSQLI_ASSOC);
                                         $total = $custNums[0]['id'];
-                                        $result = mysqli_query($conn, $sql);
-                                        $sql2 = "SELECT p.idPersona, p.Nombre, c.NombreCargo, p.Telefono, p.coordX, p.coordY, p.EsSocio, p.EsHeredero FROM cargo c, administrador a, persona p WHERE a.Persona_idPersona = p.idPersona and a.Cargo_idCargo = c.idCargo;";
-                                        $result2 = mysqli_query($conn, $sql2);
+                                        $pages = ceil($total / $limit);
+
+                                        $Previous = $page - 1;
+                                        $Next = $page + 1;
+                                        
                                         while($mostrar = mysqli_fetch_array($result2)){
                                             $cargo = $mostrar['NombreCargo'];
                                         ?>
@@ -285,7 +291,7 @@
                                         ?>
                                         <?php
                                         include("assets/php/conexion.php");
-                                        $sql = "SELECT * FROM persona WHERE idPersona NOT IN (SELECT Persona_idPersona FROM administrador)";
+                                        $sql = "SELECT * FROM persona WHERE idPersona NOT IN (SELECT Persona_idPersona FROM administrador) LIMIT $start, $limit";
                                         $result = mysqli_query($conn, $sql);
                                         while($mostrar = mysqli_fetch_array($result)){
                                             $cargo = "Sin cargo";
@@ -333,6 +339,7 @@
                                         ?>
                                         
                                     </tbody>
+                                    </div>
                                     <tfoot>
                                         <tr></tr>
                                     </tfoot>
@@ -346,10 +353,10 @@
                                     <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
                                         <ul class="pagination">
                                             <li class="page-item disabled"><a class="page-link" href="index.php?page=<?$Previous; ?>" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                            <?php for($i = 1; $i <= $pages; $i++) : ?>
+                                                <li class="page-item"><a class="page-link" href="index.php?page= <?= $i;?>"><?= $i; ?></a></li>
+                                            <?php endfor; ?>
+                                            <li class="page-item"><a class="page-link" href="index.php?page=<?$Next; ?>" aria-label="Next"><span aria-hidden="true">»</span></a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -413,6 +420,22 @@
         }
         document.getElementById("closebtn").addEventListener("click", function(){
             document.getElementById("mapUsuario").style.display = "none";
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#limit-records").change(function(){
+                $('form').submit();
+            })
+        })
+    </script>
+    <script>
+        // Basic example
+        $(document).ready(function () {
+            $('#dataTable').DataTable({
+                "pagingType": "simple_numbers" // "simple" option for 'Previous' and 'Next' buttons only
+            });
+            $('.dataTables_length').addClass('bs-select');
         });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp0oPxwXimtvim2A34gQu5pqMcYH5WXSs&callback=initMap"
