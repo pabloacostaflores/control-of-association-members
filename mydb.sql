@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-12-2021 a las 22:30:29
+-- Tiempo de generación: 14-12-2021 a las 08:34:16
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.7
 
@@ -20,9 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `mydb`
 --
-
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE DATABASE IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `mydb`;
 
 -- --------------------------------------------------------
 
@@ -32,9 +31,10 @@ USE `mydb` ;
 
 CREATE TABLE `actividades` (
   `idActividades` int(11) NOT NULL,
-  `FechaHora` datetime NOT NULL,
-  `HorasLaboradas` int(11) NOT NULL,
-  `Estatus` varchar(45) NOT NULL
+  `Mes` int(11) NOT NULL,
+  `Anio` int(11) NOT NULL,
+  `Estatus` int(11) NOT NULL,
+  `idPersona` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -55,10 +55,13 @@ CREATE TABLE `administrador` (
 --
 
 INSERT INTO `administrador` (`idAdministrador`, `Contrasenia`, `Cargo_idCargo`, `Persona_idPersona`) VALUES
+(0, '1234', 2, 0),
 (1, 'perritos', 1, 1),
 (1234568, 'gatitos2', 2, 8),
 (1234569, '12345678', 2, 7),
-(12345685, 'a', 4, 4);
+(12345685, 'a', 4, 4),
+(12345696, '0123456789', 4, 10),
+(12345698, '12345678', 3, 69);
 
 -- --------------------------------------------------------
 
@@ -99,9 +102,13 @@ CREATE TABLE `objeto` (
 --
 
 INSERT INTO `objeto` (`idObjeto`, `Nombre`, `Descripcion`, `Cantidad`) VALUES
-(1, 'Pala', 'Una pala multiusos', 5),
-(5, 'Pala', 'Pala para comer', 8),
-(6, 'Pala', 'Pala para paladas', 5);
+(1, 'Pala', 'Una pala multiusos', 4),
+(5, 'Pala', 'Pala para comer', 0),
+(6, 'Pala', 'Pala para paladas', 4),
+(7, 'Perro', 'Un perrito ', 4),
+(8, 'Pito de Tibu', 'Rico', 5),
+(12, 'Cascos', 'Cascos de proteccion', 9),
+(13, 'Muñecas inflebles', 'Muñecas para soltitarios mutliuso', 90);
 
 -- --------------------------------------------------------
 
@@ -126,7 +133,9 @@ INSERT INTO `operacionesfinancieras` (`idOperacionesFinancieras`, `Monto`, `Fech
 (19, 52, '2021-12-05', 'Prueba', 1234568),
 (20, 500, '1990-12-12', 'Se compro una pasa', 1234568),
 (21, -6, '2020-12-11', 'Perdimos un dinosaurio', 1234568),
-(22, 504, '1200-12-11', 'Pago al programador', 1234568);
+(22, 504, '1200-12-11', 'Pago al programador', 1234568),
+(23, 40, '2021-12-13', 'Operacion en Inventario', 0),
+(24, 6210, '2021-12-13', 'Operacion en Inventario', 0);
 
 -- --------------------------------------------------------
 
@@ -142,6 +151,18 @@ CREATE TABLE `operacioninventario` (
   `Administrador_idAdministrador` int(11) NOT NULL,
   `Objeto_idObjeto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `operacioninventario`
+--
+
+INSERT INTO `operacioninventario` (`idOperacionInventario`, `Cantidad`, `FechaOperacion`, `Valor`, `Administrador_idAdministrador`, `Objeto_idObjeto`) VALUES
+(2, 1, '2021-12-12', -5, 1, 6),
+(7, 1, '2021-12-12', -1, 1, 1),
+(8, 1, '2021-12-13', -1, 1, 7),
+(9, -10, '2021-12-13', 0, 1, 12),
+(10, -15, '2021-12-13', -15, 1, 8),
+(11, -1, '2021-12-13', 0, 1234568, 12);
 
 -- --------------------------------------------------------
 
@@ -164,12 +185,14 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`idPersona`, `Nombre`, `coordX`, `coordY`, `Telefono`, `EsSocio`, `EsHeredero`) VALUES
+(0, 'Bot', 0, 0, '0', 1, 1),
 (1, 'Juan', NULL, NULL, '999999', 1, 0),
 (4, 'Mau', NULL, NULL, '1234567891', 0, 0),
 (7, 'JJ', NULL, NULL, '55578', 1, 0),
 (8, 'Angel Uriel', NULL, NULL, '55555', 0, 0),
 (9, 'Pablo', NULL, NULL, '455', 1, 1),
 (10, 'Poncho', 19.343892902279116, -99.36263405253827, '557815', 1, 1),
+(69, 'TIbu', 19.34507541027991, -99.36137642180157, '97582405', 1, 0),
 (555, 'Peca Peca', NULL, NULL, '5576814', 1, 1);
 
 -- --------------------------------------------------------
@@ -204,7 +227,11 @@ CREATE TABLE `prestamos` (
 --
 
 INSERT INTO `prestamos` (`idPrestamos`, `Cantidad`, `Fecha`, `Devuelto`, `Objeto_idObjeto`, `Administrador_idAdministrador`, `Persona_idPersona`) VALUES
-(10, 1, '2021-12-12', 0, 5, 1234568, 1);
+(10, 1, '2021-12-12', 1, 5, 1234568, 1),
+(12, 5, '2021-12-14', 1, 12, 1, 4),
+(13, 4, '2021-12-14', 1, 6, 1, 7),
+(14, 10, '2021-12-14', 1, 13, 1, 4),
+(15, 1, '2021-12-14', 0, 7, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -218,6 +245,14 @@ CREATE TABLE `reparaciontoma` (
   `Descripcion` varchar(500) NOT NULL,
   `Persona_idPersona` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `reparaciontoma`
+--
+
+INSERT INTO `reparaciontoma` (`idReparacionToma`, `Fecha`, `Descripcion`, `Persona_idPersona`) VALUES
+(2, '2021-11-05', 'Se puso kolaloca', 4),
+(3, '1984-02-29', 'Se parcho con sopa maruchan y despues se metio en arroz', 7);
 
 -- --------------------------------------------------------
 
@@ -233,6 +268,14 @@ CREATE TABLE `reportetoma` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Volcado de datos para la tabla `reportetoma`
+--
+
+INSERT INTO `reportetoma` (`idReporteToma`, `Fecha`, `Descripcion`, `Persona_idPersona`) VALUES
+(1, '2020-12-05', 'La rompi jugando al futbol', 4),
+(2, '1984-02-28', 'Fue una peda intenzaa', 7);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -240,7 +283,8 @@ CREATE TABLE `reportetoma` (
 -- Indices de la tabla `actividades`
 --
 ALTER TABLE `actividades`
-  ADD PRIMARY KEY (`idActividades`);
+  ADD PRIMARY KEY (`idActividades`),
+  ADD KEY `idPersona` (`idPersona`);
 
 --
 -- Indices de la tabla `administrador`
@@ -328,7 +372,7 @@ ALTER TABLE `actividades`
 -- AUTO_INCREMENT de la tabla `administrador`
 --
 ALTER TABLE `administrador`
-  MODIFY `idAdministrador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12345696;
+  MODIFY `idAdministrador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12345699;
 
 --
 -- AUTO_INCREMENT de la tabla `cargo`
@@ -340,41 +384,47 @@ ALTER TABLE `cargo`
 -- AUTO_INCREMENT de la tabla `objeto`
 --
 ALTER TABLE `objeto`
-  MODIFY `idObjeto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idObjeto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `operacionesfinancieras`
 --
 ALTER TABLE `operacionesfinancieras`
-  MODIFY `idOperacionesFinancieras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `idOperacionesFinancieras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `operacioninventario`
 --
 ALTER TABLE `operacioninventario`
-  MODIFY `idOperacionInventario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idOperacionInventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `idPrestamos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idPrestamos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `reparaciontoma`
 --
 ALTER TABLE `reparaciontoma`
-  MODIFY `idReparacionToma` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idReparacionToma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `reportetoma`
 --
 ALTER TABLE `reportetoma`
-  MODIFY `idReporteToma` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idReporteToma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `actividades`
+--
+ALTER TABLE `actividades`
+  ADD CONSTRAINT `actividades_ibfk_1` FOREIGN KEY (`idPersona`) REFERENCES `persona` (`idPersona`);
 
 --
 -- Filtros para la tabla `administrador`
