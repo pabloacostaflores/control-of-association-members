@@ -213,7 +213,7 @@
                                 </div>
                             </div>
                             <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
-                                <table class="table my-0" id="dataTable">
+                                <table class="table my-0 " id="dataTable">
                                     <thead>
                                         <tr>
                                             <th>Id Persona</th>
