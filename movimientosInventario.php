@@ -222,6 +222,11 @@
             }
         }
     </script>
+      <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
     <script>
         var cantidad = document.getElementById("email-3");
         cantidad.onchange = function(){

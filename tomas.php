@@ -360,6 +360,11 @@
             }
         }
     </script>
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp0oPxwXimtvim2A34gQu5pqMcYH5WXSs&callback=initMap"
         async defer></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
