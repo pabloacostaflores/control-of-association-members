@@ -359,6 +359,9 @@
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
     <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
         var map, pastCoord = 1, currCoord;
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
