@@ -105,97 +105,67 @@
                                     <thead>
                                         <tr>
                                             <th>Id Actividad</th>
-                                            <th>Fecha y Hora</th>
-                                            <th>Persona</th>
+                                            <th>Nombre</th>
+                                            <th>Mes</th>
+                                            <th>Anio</th>
                                             <th>Costo</th>
                                             <th>Reg Pago</th>
                                             <th>Reg Asistencia</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php 
+                                        include ("assets/php/conexion.php");
+                                        $sql = "SELECT * FROM actividades";
+                                        $result = mysqli_query($conn, $sql);
+                                        while($row = mysqli_fetch_assoc($result)){
+                                            ?>
                                         <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
+                                            <?php
+                                            $nom = $row['idPersona'];
+                                            $sql2 = "SELECT Nombre FROM persona WHERE idPersona = '$nom'";
+                                            $result2 = mysqli_query($conn, $sql2);
+                                            while($row2 = mysqli_fetch_assoc($result2)){
+                                                $nombre = $row2['Nombre'];
+                                            }
+                                            ?>
+                                            <td><?php echo $row['idActividades']; ?></td>
+                                            <td><?php echo $nombre; ?></td>
+                                            <td><?php echo $row['Mes']; ?></td>
+                                            <td><?php echo $row['Anio']; ?></td>
+                                            <td>30</td>
+                                            <?php
+                                                if($row['Estatus']==0){
+                                                    ?>
+                                                    <td><a href="calendario.php?pago=<?php echo $row['idActividades']; ?>"><button class="btn btn-primary" name ="Registrar Pago">Registrar Pago</button></a></td>
+                                                    <td><a href="calendario.php?asistencia=<?php echo $row['idActividades']; ?>"><button class="btn btn-primary">Registrar Asistencia</button></a></td>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($row['Estatus']==1){
+                                                    ?>
+                                                    <td>Pago realizado</td>
+                                                    <td>Pago realizado</td>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($row['Estatus']==2){
+                                                    ?>
+                                                    <td>Asistencia registrada</td>
+                                                    <td>Asistencia registrada</td>
+                                                    <?php
+                                                }
+                                                ?>
                                         </tr>
-                                        <tr>
-                                            <td>Angelica Ramos</td>
-                                            <td>Chief Executive Officer(CEO)</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                            <td>2009/10/09<br></td>
-                                            <td>$1,200,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12<br></td>
-                                            <td>$86,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bradley Greer</td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>41</td>
-                                            <td>2012/10/13<br></td>
-                                            <td>$132,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brenden Wagner</td>
-                                            <td>Software Engineer</td>
-                                            <td>San Francisco</td>
-                                            <td>28</td>
-                                            <td>2011/06/07<br></td>
-                                            <td>$206,850</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brielle Williamson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>New York</td>
-                                            <td>61</td>
-                                            <td>2012/12/02<br></td>
-                                            <td>$372,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bruno Nash<br></td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>38</td>
-                                            <td>2011/05/03<br></td>
-                                            <td>$163,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Caesar Vance</td>
-                                            <td>Pre-Sales Support</td>
-                                            <td>New York</td>
-                                            <td>21</td>
-                                            <td>2011/12/12<br></td>
-                                            <td>$106,450</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cara Stevens</td>
-                                            <td>Sales Assistant</td>
-                                            <td>New York</td>
-                                            <td>46</td>
-                                            <td>2011/12/06<br></td>
-                                            <td>$145,600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior JavaScript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29<br></td>
-                                            <td>$433,060</td>
-                                        </tr>
+                                        <?php
+                                        }
+                                    ?>
+                                    <?php
+                                        include("actualizacionFaenas.php");
+                                        ?>
                                     </tbody>
-                                    <tfoot>
-                                        <tr></tr>
                                     </tfoot>
                                 </table>
                             </div>
