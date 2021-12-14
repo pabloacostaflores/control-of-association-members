@@ -252,7 +252,7 @@
                                             <td><?php echo $cargo?></td>
                                             <td><?php echo $mostrar['Telefono']?></td>
                                             <td>
-                                                <button id="map<?php echo $mostrar['idPersona']; ?>">Ver</button>
+                                                <button id="map<?php echo $mostrar['idPersona']; ?>" class="btn btn-primary btn-sm">Ver</button>
                                                 <script>
                                                     document.getElementById("map<?php echo $mostrar['idPersona']; ?>").addEventListener("click", function(){
                                                         document.getElementById("mapUsuario").style.display = "block";
@@ -299,7 +299,7 @@
                                             <td><?php echo $cargo?></td>
                                             <td><?php echo $mostrar['Telefono']?></td>
                                             <td>
-                                                <button id="map<?php echo $mostrar['idPersona']; ?>">Ver</button>
+                                                <button id="map<?php echo $mostrar['idPersona']; ?>" class="btn btn-primary btn-sm">Ver</button>
                                                 <script>
                                                     document.getElementById("map<?php echo $mostrar['idPersona']; ?>").addEventListener("click", function(){
                                                         document.getElementById("mapUsuario").style.display = "block";
